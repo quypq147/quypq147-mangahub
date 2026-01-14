@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex">
+
+    <aside class="w-64 bg-gray-800 border-r border-gray-700 hidden md:block">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold text-blue-500">Admin Panel</h2>
+        </div>
+        <nav class="mt-6">
+            <a href="#" class="block px-6 py-3 bg-gray-700 border-l-4 border-blue-500 text-white">Upload Manga</a>
+            <a href="#" class="block px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white">Manage Users</a>
+            <a href="#" class="block px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white">Forum Moderation</a>
+            <a href="index.html" class="block px-6 py-3 text-red-400 hover:bg-gray-700 mt-10">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-8">
+        <h1 class="text-3xl font-bold mb-8">Upload New Chapter</h1>
+
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-3xl">
+            <form>
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2">Manga Title</label>
+                    <input type="text" class="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. One Piece">
+                </div>
+
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-400 mb-2">Chapter Number</label>
+                        <input type="number" class="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-2">Language</label>
+                        <select class="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:outline-none focus:border-blue-500">
+                            <option>English</option>
+                            <option>Vietnamese</option>
+                            <option>Japanese</option>
+                            <option>Spanish</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2">Upload Pages (Images/Zip)</label>
+                    <div class="border-2 border-dashed border-gray-600 rounded-lg p-10 text-center hover:bg-gray-700 hover:border-gray-500 transition cursor-pointer">
+                        <p class="text-gray-300">Drag & Drop files here or <span class="text-blue-400 underline">Browse</span></p>
+                        <p class="text-sm text-gray-500 mt-2">Support: .jpg, .png, .zip</p>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition w-full">
+                    Publish Chapter
+                </button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
