@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sign In - MangaWorld</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f43f5e", // Rose-500 matching the red/pink accent
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a", // Deep slate/blue
+                        "surface-dark": "#1e293b", // Lighter slate for cards
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif
+        }
+
+        .manga-bg {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuDRCBoYwf_bfRINccl8Bm6KCIIOnBEZzR5VuoG7jikuDr0tsoxyPxBd2YtHZ0T2QmgJk85Mi9DYajJ00ZNqv9TsbXUueOxGkHBpg8wXBpUz5GeqWsRIQO4FAINcboV4Y-6xbJYHaY4z9-rJgElGPs4C74zr75zAq-j_25qC4uXfX0WbNGV_-e5WnDbZ50GSkYz8mSADqR14Nf1Vo-hH98ARjrF52_gkI0t3Kmsw131UZdexrkeHrhVA9m0_6-nr0lRGks7KcbsBU1Q);
+            background-size: cover;
+            background-position: center
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <nav
+        class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2" href="#">
+                        <span class="text-2xl font-bold tracking-tight text-blue-500">Manga<span
+                                class="text-slate-900 dark:text-white">World</span></span>
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                            href="#">Home</a>
+                        <a class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                            href="#">Forum</a>
+                        <a class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                            href="#">Latest</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        <span class="material-icons text-lg">language</span>
+                        EN
+                    </button>
+                    <a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+                        href="#">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow manga-bg flex items-center justify-center p-6">
+        <div class="w-full max-w-md">
+            <div
+                class="bg-white dark:bg-surface-dark shadow-2xl rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/50">
+                <div class="p-8">
+                    <div class="text-center mb-10">
+                        <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Welcome Back</h1>
+                        <p class="text-slate-500 dark:text-slate-400">Sign in to join the international community</p>
+                    </div>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+                                for="username">Username or Email</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                                    <span class="material-icons text-xl">person</span>
+                                </span>
+                                <input
+                                    class="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                    id="username" name="username" placeholder="Enter your username" type="text" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                    for="password">Password</label>
+                                <a class="text-sm font-medium text-primary hover:underline transition-all"
+                                    href="#">Forgot Password?</a>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                                    <span class="material-icons text-xl">lock</span>
+                                </span>
+                                <input
+                                    class="block w-full pl-10 pr-10 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                    id="password" name="password" placeholder="••••••••" type="password" />
+                                <button
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                                    type="button">
+                                    <span class="material-icons text-xl">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <input
+                                class="h-4 w-4 text-primary focus:ring-primary border-slate-300 dark:border-slate-600 rounded bg-slate-50 dark:bg-slate-800"
+                                id="remember-me" name="remember-me" type="checkbox" />
+                            <label class="ml-2 block text-sm text-slate-600 dark:text-slate-400" for="remember-me">
+                                Remember me
+                            </label>
+                        </div>
+                        <button
+                            class="w-full flex justify-center items-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-white bg-primary hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all active:scale-[0.98]"
+                            type="submit">
+                            <span class="material-icons mr-2 text-xl">login</span>
+                            Sign In
+                        </button>
+                    </form>
+                    <div class="mt-8 relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400">Or
+                                continue with</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <button
+                            class="flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <img alt="Google" class="h-5 w-5 mr-2"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMT6NAms0u0g5KefzYxEluH7tbHq_13rJLDhyAXMMZkOTaCnl9LOsV-hHprgbrJr2n2394OMdZowA5dEzUkfp8SDxc3Hj0FI7holzXL6gi3hc09NuMaCH_vmk1nV9gkWhqhOdu3Csov7QVJz2WRBUb6nt8tXRVYLPbeIRhXlLojZsB76ygKf4EoRr0bgTR4JN5H1XPh7ptgCFI_cPNUG9-q8QpNchpPbn2McbwBW3CrmPkVQ4y5jAFfKYm0S_AQepFldX47pGnTu4" />
+                            <span class="text-sm font-medium">Google</span>
+                        </button>
+                        <button
+                            class="flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <img alt="Discord" class="h-5 w-5 mr-2"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzdMm3X7Y3CbGeqEbF96OwZ2xNBdZdPlaRb0mfkxBU7zo0w-OK_p6FPN1p8iF__QqR5lKmgZPK-kqhhb-dL2j1VMlc63PuHajTJG0s6-tbKWHJsGbY-8gTNJGrs-hfHSFXcFsgv9hrEfDPhCiCatQhfFxVNdpKHebm-XAcJ-qy0pd3_d_eDKy69F-C_xtN5r8iHRCy08ic3atl4Ek3FMB2zhk0s6Cp-fDbQzP_Mj0LTmNLw6UdCPjrgZVh19UizSBQd-cd8I3NhU" />
+                            <span class="text-sm font-medium">Discord</span>
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="py-6 px-8 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700/50 text-center">
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Don't have an account?
+                        <a class="font-bold text-primary hover:text-rose-600 transition-all" href="#">Sign Up Now</a>
+                    </p>
+                </div>
+            </div>
+            <div
+                class="mt-8 flex justify-center gap-6 text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">
+                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-primary transition-colors" href="#">Help Center</a>
+            </div>
+        </div>
+    </main>
+    <footer class="py-8 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-400 text-sm">© 2024 MangaWorld Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
