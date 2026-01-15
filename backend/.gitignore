@@ -28,6 +28,5 @@ Thumbs.db
 dist/
 build/
 
-# Temporary files
-*.tmp
-*.temp
+# Uploads
+uploads/
