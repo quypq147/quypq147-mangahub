@@ -1,7 +1,15 @@
-const name = "World";
+require('dotenv').config();
 
-export function greet(name) {
-    return `Hello, ${name}!`;
-}
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
 
-greet(name);
+mongoose.connect(process.env.MONGODB_URI)
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+});
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');  
+});

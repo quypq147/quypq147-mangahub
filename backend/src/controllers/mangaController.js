@@ -1,7 +1,9 @@
-import {Request, Response} from 'express';
+const {Request, Response} = require('express');
 
-export function getMangaList(req: Request, res: Response) {
+exports.getMangaList = function(req, res) {
     try{
-    
+        
+    }catch(err){
+        res.status(500).send({error: 'Internal Server Error'});
     }
 }

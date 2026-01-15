@@ -1,6 +1,7 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import 'dotenv/config';
-const uri = process.env.MONGODB_URI || 'mongodb+srv://quypq147:quypq147@mangahub.7kiczd7.mongodb.net/?appName=mangahub';
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const dotenv = require('dotenv');
+dotenv.config();
+const uri = process.env.MONGODB_URI;
 
 console.log('MongoDB URI:', uri);
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
