@@ -68,8 +68,6 @@
                         <span class="material-icons text-lg">language</span>
                         EN
                     </button>
-                    <a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
-                        href="#">Quay về trang chủ</a>
                 </div>
             </div>
         </div>
@@ -100,8 +98,8 @@
                             <div class="flex justify-between items-center mb-2">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
                                     for="password">Mật khẩu</label>
-                                <a class="text-sm font-medium text-primary hover:underline transition-all"
-                                    href="#">Quên mật khẩu?</a>
+                                <a class="text-sm font-medium text-primary hover:underline transition-all" href="#">Quên
+                                    mật khẩu?</a>
                             </div>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -137,21 +135,15 @@
                             <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400">Hoặc tiếp tục với</span>
+                            <span class="px-2 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400">Hoặc
+                                tiếp tục với</span>
                         </div>
                     </div>
-                    <div class="mt-6 grid grid-cols-2 gap-4">
+                    <div class="mt-6 grid">
                         <button
                             class="flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                            <img alt="Google" class="h-5 w-5 mr-2"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMT6NAms0u0g5KefzYxEluH7tbHq_13rJLDhyAXMMZkOTaCnl9LOsV-hHprgbrJr2n2394OMdZowA5dEzUkfp8SDxc3Hj0FI7holzXL6gi3hc09NuMaCH_vmk1nV9gkWhqhOdu3Csov7QVJz2WRBUb6nt8tXRVYLPbeIRhXlLojZsB76ygKf4EoRr0bgTR4JN5H1XPh7ptgCFI_cPNUG9-q8QpNchpPbn2McbwBW3CrmPkVQ4y5jAFfKYm0S_AQepFldX47pGnTu4" />
+                            <img alt="Google" class="h-5 w-5 mr-2" src="../assets/sign-in/google.png" />
                             <span class="text-sm font-medium">Google</span>
-                        </button>
-                        <button
-                            class="flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                            <img alt="Discord" class="h-5 w-5 mr-2"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzdMm3X7Y3CbGeqEbF96OwZ2xNBdZdPlaRb0mfkxBU7zo0w-OK_p6FPN1p8iF__QqR5lKmgZPK-kqhhb-dL2j1VMlc63PuHajTJG0s6-tbKWHJsGbY-8gTNJGrs-hfHSFXcFsgv9hrEfDPhCiCatQhfFxVNdpKHebm-XAcJ-qy0pd3_d_eDKy69F-C_xtN5r8iHRCy08ic3atl4Ek3FMB2zhk0s6Cp-fDbQzP_Mj0LTmNLw6UdCPjrgZVh19UizSBQd-cd8I3NhU" />
-                            <span class="text-sm font-medium">Discord</span>
                         </button>
                     </div>
                 </div>
@@ -159,15 +151,10 @@
                     class="py-6 px-8 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700/50 text-center">
                     <p class="text-sm text-slate-600 dark:text-slate-400">
                         Chưa có tài khoản?
-                        <a class="font-bold text-primary hover:text-rose-600 transition-all" href="../sign-up/index.html">Đăng ký ngay</a>
+                        <a class="font-bold text-primary hover:text-rose-600 transition-all"
+                            href="../sign-up/index.html">Đăng ký ngay</a>
                     </p>
                 </div>
-            </div>
-            <div
-                class="mt-8 flex justify-center gap-6 text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">
-                <a class="hover:text-primary transition-colors" href="#">Điều khoản dịch vụ</a>
-                <a class="hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
-                <a class="hover:text-primary transition-colors" href="#">Trung tâm trợ giúp</a>
             </div>
         </div>
     </main>
@@ -176,7 +163,57 @@
             <p class="text-slate-400 text-sm">© 2024 Cộng đồng MangaWorld. Bảo lưu mọi quyền.</p>
         </div>
     </footer>
+    <script>
+        document.querySelector('form').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Stop page reload
 
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // Visual feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="material-icons animate-spin mr-2">refresh</span> Processing...';
+
+            const loginData = {
+                username: usernameInput.value,
+                password: passwordInput.value
+            };
+
+            try {
+                // Send POST request to backend
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // 1. Save Token and User Info
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+
+                    // 2. Redirect to Homepage
+                    window.location.href = '../index.html';
+                } else {
+                    // Show Error
+                    alert(data.message || 'Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Cannot connect to server. Is the backend running?');
+            } finally {
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+    </script>
 </body>
 
 </html>

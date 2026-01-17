@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MangaWorld - User Profile Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb", // Vibrant blue from the reference
+                        "background-light": "#f9fafb",
+                        "background-dark": "#0f172a",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+    <header
+        class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons text-primary text-3xl">auto_stories</span>
+                        <span class="font-bold text-xl tracking-tight">MangaWorld</span>
+                    </div>
+                    <nav class="hidden md:flex gap-6 text-sm font-medium">
+                        <a class="hover:text-primary transition-colors" href="#">Home</a>
+                        <a class="hover:text-primary transition-colors" href="#">Browse</a>
+                        <a class="hover:text-primary transition-colors" href="#">Community</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-primary/20">
+                        Edit Profile
+                    </button>
+                    <button
+                        class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:ring-2 ring-primary transition-all"
+                        onclick="document.documentElement.classList.toggle('dark')">
+                        <span class="material-icons text-lg dark:hidden">dark_mode</span>
+                        <span class="material-icons text-lg hidden dark:block">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <aside class="lg:col-span-3 space-y-6">
+                <div
+                    class="bg-card-light dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="relative group">
+                            <img alt="User avatar"
+                                class="w-24 h-24 rounded-full border-4 border-primary/20 mb-4 object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw1o5ljVBEHQFoFR1ossWBBMA21p-puovTDtV7MJwXQ4Y6D-vzNNZkL_TyxtnRtH0bh--lGVS3rimObKixsX4WqQgkle-tE7CtlSVTlvHm1cSvao01K8Lt9SPAW_hE0Fcu4QZ8mbVTaEu_3ZoHn5h5JeFfa-rn1fuuCII-X8_PLF5XvIOB1Z1SYjm13C0GIzJnVsJaAeMFa8xOAGfpg6qniFGzmHGu71BVtDm-Zkj07SfwNGEGJAp3FC8mHdnY5mJcAsZYU1b2GA4" />
+                            <div
+                                class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                <span class="material-icons text-white">camera_alt</span>
+                            </div>
+                        </div>
+                        <h2 class="text-xl font-bold">LuffyFan99</h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">@king_of_pirates</p>
+                        <div class="mt-4 flex gap-2 w-full">
+                            <div
+                                class="flex-1 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
+                                <div class="text-xs text-slate-500">Chapters</div>
+                                <div class="font-bold">1,240</div>
+                            </div>
+                            <div
+                                class="flex-1 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
+                                <div class="text-xs text-slate-500">Following</div>
+                                <div class="font-bold">82</div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="mt-8 space-y-1">
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                            href="#">
+                            <span class="material-icons text-[20px]">person</span>
+                            <span class="font-medium">Profile Info</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors border border-primary/20"
+                            href="#">
+                            <span class="material-icons text-[20px]">library_books</span>
+                            <span class="font-medium">My Library</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                            href="#">
+                            <span class="material-icons text-[20px]">forum</span>
+                            <span class="font-medium">My Comments</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                            href="#">
+                            <span class="material-icons text-[20px]">settings</span>
+                            <span class="font-medium">Settings</span>
+                        </a>
+                    </nav>
+                </div>
+                <div
+                    class="bg-card-light dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Achievements</h3>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div class="aspect-square bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-500"
+                            title="Collector"><span class="material-icons">workspace_premium</span></div>
+                        <div class="aspect-square bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500"
+                            title="Early Adopter"><span class="material-icons">rocket_launch</span></div>
+                        <div class="aspect-square bg-green-500/10 rounded-lg flex items-center justify-center text-green-500"
+                            title="Socialite"><span class="material-icons">diversity_3</span></div>
+                        <div class="aspect-square bg-purple-500/10 rounded-lg flex items-center justify-center text-purple-500"
+                            title="Reviewer"><span class="material-icons">rate_review</span></div>
+                    </div>
+                </div>
+            </aside>
+            <section class="lg:col-span-6 space-y-6">
+                <div
+                    class="bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="border-b border-slate-200 dark:border-slate-800 px-6 pt-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h1 class="text-2xl font-bold">My Library</h1>
+                            <div class="flex gap-2">
+                                <button class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400"><span
+                                        class="material-icons text-sm">grid_view</span></button>
+                                <button
+                                    class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"><span
+                                        class="material-icons text-sm">view_list</span></button>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 text-sm font-medium">
+                            <button class="pb-4 border-b-2 border-primary text-primary">Reading (12)</button>
+                            <button
+                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Completed
+                                (145)</button>
+                            <button
+                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Plan
+                                to Read (38)</button>
+                        </div>
+                    </div>
+                    <div class="p-6 grid grid-cols-2 sm:grid-cols-3 gap-6">
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7jTCZXnaML-uMf9_6AwDRjj2dxVT8na1ea1MV-L-kSsaf2Lzxn6pEYHEREeBj91kGI_I7jIdCrPzkTVFzs0UX2QIFK24TVMgZNFxBIoArmtsIT56nc7EauirUMuHNZPh8ouV1VETFpNrWrHobADSfyUTBY3DLxb7LAJKIL8HOgpAtF5uPEp-euUoCbVV9VmVWv-a2e3YjUZOZEJbgyjzB82pkxzPwH4RFA-wgzphM8-0fsdYqnLREb93O_Ef7hUmYin7tS9p__9A" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">One Piece</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 1108 / 1110</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWqXV-6AJJj6unTZ8ApsaBxSSEcI5C1z2iTrld7u_s9tbbK3dZhgFtAaXM1MTrVfZA8DtUfRS5zj81r4ssyrQ_22Pd9mybfLHkwKcXg9MGRMRHp5-dM80s8pr0G6T46vYrDyiNx3nQipj4P7Syegb0t-emjKEIh1z6GzK7dteUiWeF7WPXIhIM4HFrYDwia8hl7SfqWCdUs5NTpSfHbRcY6ghvVt0TwG2KJFz3XJ3_19LIVU7jVK1BM-QkQaUXIIz3lSn1ryjCKYY" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">Jujutsu Kaisen</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 248 / 255</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2q1khWJDG9Du4uwIZSHYN_toMUIOwOZlIF7sW7UTjIS7tjS9ftTNnkT_9kY2uuQ_T0UPZXGTMED-XR9oOnU_oi_bUGvaxJlrnE2thdEDBMJOGjdoudQfM5I8mtIqkcq1N6j3-zYftEYxZYJM0ZYSn6o-HuudU5--6qlH5H52uT8cbrjPOr1RGt3GWsrlS7VV9bXLVvXDvAm5PWjvI3p8IYrV-aHXQABiERGbRR7QTLmRscVLEtB12tzHIC9YwpndPUxXb2qGKm1g" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">Chainsaw Man</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 150 / 160</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd8asSdkarockpaG8OzINCh6nneHOHI1AfPSMbOFs90H2nxMxs93ctfpjKr72gaCbhCAin412U0RAAFszt8ASGOMAgCzvw4qF8jvxsL_3ym4xAFtQfSFC2aUIMoZsi_o_3tRDy481JXMKoJXajtxYHI-zN2edfY_sW9GDs2IhaK1WsWQ-FCMG5Gnt5sAEuxGW-ZRdL-8AiR6g4KHxzlVzlNI1mIO5PNgFK-h-rp0kmbmXcir8NbJ7UtMOVwfyqxLZZ35U1TSEPjEw" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">Spy x Family</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 90 / 98</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDok3_Aq-Ozqj-lMsPYHikNmnEs_nfuFdaHKx-5N8docl2hyl8g0Zz_9HOepF3rn4sKAuaLkUO0AEzcn1t4-Poyati6WBFyvLfcJKQajrTbinJjWsX1uqOfxL0juTb7tpjGruRN7XCAkQSu5yZOGpHcGJTjmQZhbEPR23rkoAJj3Q-i8htA0Ebr7JnJWmV2LVgQYdDQozz6B_cZblXie8qREbFmFaJuzQH3FWnrc_a2TIxBbDLywIGQLJOhg15BOb9i3ynyazPPJUo" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">Blue Lock</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 240 / 252</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden mb-3 shadow-md group-hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                <img alt="Manga Cover" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWa5NkVbJtBFJLm7iR-YbactgRj69_gMogDOPrN1QNZLbmBCFJFKtbMQLOHnKhEMSYd59jYnGeRm2HM-zPl2Cft_3wgJkt22eqvtlSU0FoXHnYb39XRnBbzV62OPHU0CvUsQlCLyf_oURJ1pNB_iocnQBl3qLoN7dkbBfh6YVnGG2vr10O7FtT1ffjmR6Ck17zQGFbXZ6kD22tzhTWrgrtlJ0x38b5MdjteGnFsDHv4xs7JGAhg9-rpxDtFTF8kzLqUuMNm24c4qs" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
+                                        Now</button>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm truncate">Sakamoto Days</h4>
+                            <p class="text-xs text-slate-500 mb-2">Ch. 145 / 160</p>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 border-t border-slate-200 dark:border-slate-800 text-center">
+                        <button class="text-sm font-semibold text-primary hover:underline">View All Reading</button>
+                    </div>
+                </div>
+            </section>
+            <aside class="lg:col-span-3 space-y-6">
+                <div
+                    class="bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                        <h3 class="font-bold text-sm flex items-center gap-2">
+                            <span class="material-icons text-primary text-lg">bolt</span>
+                            Activity Feed
+                        </h3>
+                        <a class="text-xs text-primary hover:underline" href="#">View All</a>
+                    </div>
+                    <div
+                        class="divide-y divide-slate-200 dark:divide-slate-800 max-h-[600px] overflow-y-auto custom-scrollbar">
+                        <div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+                            <a class="group block" href="#">
+                                <h4 class="text-xs font-bold text-primary group-hover:underline line-clamp-2">
+                                    Is the latest chapter of One Piece delayed?
+                                </h4>
+                                <div class="mt-2 flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-slate-500">2 hours ago in</span>
+                                        <span class="text-[10px] font-medium text-slate-400">General Discussion</span>
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-xs font-bold">24</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Replies</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+                            <a class="group block" href="#">
+                                <h4 class="text-xs font-bold text-primary group-hover:underline line-clamp-2">
+                                    Which arcs should I skip in Naruto?
+                                </h4>
+                                <div class="mt-2 flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-slate-500">5 hours ago in</span>
+                                        <span class="text-[10px] font-medium text-slate-400">Theories</span>
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-xs font-bold">108</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Replies</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+                            <a class="group block" href="#">
+                                <h4 class="text-xs font-bold text-primary group-hover:underline line-clamp-2">
+                                    Solo Leveling anime adaptation thoughts?
+                                </h4>
+                                <div class="mt-2 flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-slate-500">1 day ago in</span>
+                                        <span class="text-[10px] font-medium text-slate-400">Anime Adaptations</span>
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-xs font-bold">42</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Replies</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+                            <a class="group block" href="#">
+                                <h4 class="text-xs font-bold text-primary group-hover:underline line-clamp-2">
+                                    Best manga for beginners in 2024?
+                                </h4>
+                                <div class="mt-2 flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-slate-500">2 days ago in</span>
+                                        <span class="text-[10px] font-medium text-slate-400">General Discussion</span>
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-xs font-bold">56</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Replies</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 bg-emerald-500/10 dark:bg-emerald-500/5 m-4 rounded-lg border border-emerald-500/20">
+                        <button
+                            class="w-full py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors">
+                            <span class="material-icons text-sm">add</span>
+                            New Thread
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-primary to-indigo-600 rounded-xl p-5 text-white shadow-lg overflow-hidden relative group">
+                    <span
+                        class="material-icons absolute -right-4 -bottom-4 text-white/10 text-9xl rotate-12 transition-transform group-hover:rotate-45">auto_stories</span>
+                    <h3 class="font-bold relative z-10">Premium Member</h3>
+                    <p class="text-xs text-white/80 mt-1 relative z-10 leading-relaxed">Unlock ad-free reading and early
+                        access to translated chapters!</p>
+                    <button
+                        class="mt-4 px-4 py-2 bg-white text-primary text-xs font-bold rounded-lg relative z-10 hover:bg-slate-100 transition-colors">Upgrade
+                        Now</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="mt-12 py-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">© 2024 MangaWorld Community Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

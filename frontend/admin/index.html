@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MangaCloud Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex">
+    <aside
+        class="w-20 lg:w-64 border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex flex-col transition-all duration-300 shrink-0">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <span class="material-icons-round text-white text-xl">Auto_stories</span>
+            </div>
+            <span class="font-bold text-xl hidden lg:block tracking-tight">MangaCloud</span>
+        </div>
+        <nav class="flex-1 px-4 py-4 space-y-2">
+            <a class="flex items-center gap-4 px-3 py-3 text-primary bg-primary/10 rounded-xl transition-colors"
+                href="#">
+                <span class="material-icons-round">dashboard</span>
+                <span class="font-medium hidden lg:block">Dashboard</span>
+            </a>
+            <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+                href="#">
+                <span class="material-icons-round group-hover:text-primary transition-colors">analytics</span>
+                <span class="font-medium hidden lg:block">Analytics</span>
+            </a>
+            <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+                href="#">
+                <span class="material-icons-round group-hover:text-primary transition-colors">library_books</span>
+                <span class="font-medium hidden lg:block">Manage Manga</span>
+            </a>
+            <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+                href="#">
+                <span class="material-icons-round group-hover:text-primary transition-colors">people</span>
+                <span class="font-medium hidden lg:block">Manage Users</span>
+            </a>
+            <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+                href="#">
+                <span class="material-icons-round group-hover:text-primary transition-colors">forum</span>
+                <span class="font-medium hidden lg:block">Forum Moderation</span>
+            </a>
+            <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group relative"
+                href="#">
+                <span class="material-icons-round group-hover:text-primary transition-colors">cloud_upload</span>
+                <span class="font-medium hidden lg:block">Upload Requests</span>
+                <span
+                    class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden lg:block">12</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+            <button
+                class="flex items-center gap-4 px-3 py-3 w-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                onclick="document.documentElement.classList.toggle('dark')">
+                <span class="material-icons-round dark:hidden">dark_mode</span>
+                <span class="material-icons-round hidden dark:block">light_mode</span>
+                <span class="font-medium hidden lg:block">Appearance</span>
+            </button>
+            <div class="flex items-center gap-3 mt-4 px-3">
+                <img alt="Admin profile" class="w-10 h-10 rounded-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuACmy-xD2tdo03An3MHuZbHIMxSTSc2uBko0mn1PvVR6x796s7s_ThyCqZnQu-qfYr2GtGoxgwCOnj3hPkwqHE1dHDEi_vGuvWaNXL6mCAiusOlKdc1EUwyg3TxKy70KP7YgiqAyvhEZ7mtyHP7-Q5ntcmDcJFYK_dxsgkPv6QqxfVxdRBX31ndMwrKKBXIRZ3slkRHJ8Hu9KpBc5t6spwAu7dfsLpx_y6LQUBrb8Dmq8QYOlEsqt40Wy4OVzoQK2bGZwMFATQv1lU" />
+                <div class="hidden lg:block overflow-hidden">
+                    <p class="text-sm font-semibold truncate">Admin User</p>
+                    <p class="text-xs text-slate-500 truncate">Super Admin</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main class="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-10">
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
+                <p class="text-slate-500 dark:text-slate-400 mt-1">Welcome back. Here's what's happening today.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-icons-round text-lg">download</span> Export
+                </button>
+                <button
+                    class="bg-primary text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
+                    <span class="material-icons-round text-lg">add</span> New Manga
+                </button>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div
+                class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-blue-500/10 rounded-xl text-blue-500">
+                        <span class="material-icons-round">group</span>
+                    </div>
+                    <span class="text-emerald-500 text-sm font-medium flex items-center"><span
+                            class="material-icons-round text-sm">trending_up</span> 12%</span>
+                </div>
+                <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Users</h3>
+                <p class="text-3xl font-bold mt-1">42,892</p>
+            </div>
+            <div
+                class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-primary/10 rounded-xl text-primary">
+                        <span class="material-icons-round">publish</span>
+                    </div>
+                    <span class="text-emerald-500 text-sm font-medium flex items-center"><span
+                            class="material-icons-round text-sm">trending_up</span> 24%</span>
+                </div>
+                <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">New Uploads (Today)</h3>
+                <p class="text-3xl font-bold mt-1">156</p>
+            </div>
+            <div
+                class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-purple-500/10 rounded-xl text-purple-500">
+                        <span class="material-icons-round">forum</span>
+                    </div>
+                    <span class="text-slate-400 text-sm font-medium flex items-center"><span
+                            class="material-icons-round text-sm">horizontal_rule</span> 0%</span>
+                </div>
+                <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Active Threads</h3>
+                <p class="text-3xl font-bold mt-1">1,204</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div
+                class="lg:col-span-2 bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Pending Chapter Uploads</h2>
+                    <a class="text-primary text-sm font-medium hover:underline" href="#">View All</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead
+                            class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase font-semibold">
+                            <tr>
+                                <th class="px-6 py-4">Manga Title</th>
+                                <th class="px-6 py-4">Chapter</th>
+                                <th class="px-6 py-4">Uploader</th>
+                                <th class="px-6 py-4">Status</th>
+                                <th class="px-6 py-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-14 bg-slate-200 dark:bg-slate-700 rounded-md overflow-hidden shrink-0">
+                                            <img alt="Manga cover" class="w-full h-full object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEdpn0geJlh3zfQ7SCqLjoTkh_iyO6aRJog9UQa38Pp4dTzmaDEtREuET9JN1jAo1aq35DcXCf1mY39UvUpc874dw0TTAX8DTXSuZAa5FvGi6C0pXWzcvAfHqX3gKlI07-p0ye2FM_9LFV65HtFRMCPI8BUS8atblO570OTyI_Hwf4tBUgE664swFxzIY74DvNi4vthQ_-t4WERqaHTLJQk16MfoMZWDQ0k-QnFM-Od9053wLGsk59LL4ks83Cd6PVlIQbAPDe69c" />
+                                        </div>
+                                        <span class="font-medium">Shadow Chronicles</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 dark:text-slate-300">Ch. 142</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-600">
+                                            LF</div>
+                                        <span class="text-sm">LuffyFan99</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 uppercase">Pending
+                                        Review</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button
+                                            class="p-2 text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">check_circle</span>
+                                        </button>
+                                        <button
+                                            class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">cancel</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-14 bg-slate-200 dark:bg-slate-700 rounded-md overflow-hidden shrink-0">
+                                            <img alt="Manga cover" class="w-full h-full object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNvkW8YWWc8fFzZazO0PyQCRQqq35gNIgFbnbVnOf4B21xYZHLBCYDiYM1M8h4xOuzzgpt95YwDhZWVfTvStSXarPxe_g8NYeXOiuDdeoEcPt--AOfCaZsTUp5OHFcXzRYENCKZNEXIOEMWe7HEL-ey1Al-JYI1QgytVzX8P0jgf717M7MLLJc2cz8EAtYJcHTz-9W9T3CxH-YlQn6v4-dtbIA9zpLVqPXjKDTsQVmlrTWbrjt4__zTEw-780hGe_Q-_vD00LmrOI" />
+                                        </div>
+                                        <span class="font-medium">Eternal Blade</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 dark:text-slate-300">Ch. 88</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-600">
+                                            NB</div>
+                                        <span class="text-sm">NewbieReader</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 uppercase">Pending
+                                        Review</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button
+                                            class="p-2 text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">check_circle</span>
+                                        </button>
+                                        <button
+                                            class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">cancel</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-14 bg-slate-200 dark:bg-slate-700 rounded-md overflow-hidden shrink-0">
+                                            <img alt="Manga cover" class="w-full h-full object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3cnqGQACA5LNDf7vdQfVl0GtsfPCysrYiWb2rdbsAxiPhvVgk1FMuvF2PdGGbK6ZGSOA0eCj8gMn8qQV-KgAk4JWk2s5ePvw2nL6PxWDJkeWhDpUU-OBxj4TbAKuftAma6tNo8K7pXfX8EpyMd-l6GRXzwCDtAhkJjlM6tD5d7iE686Td0nTOkCtDtCdExpGoBkpI8xpGgKvOk1ic4NChTOeqTjObBGcFjkujzdTbIM23x5t_g-2TnYCzuyQc4xohBiSUP3EFlSU" />
+                                        </div>
+                                        <span class="font-medium">Skybound</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 dark:text-slate-300">Ch. 21</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-[10px] font-bold text-emerald-600">
+                                            SK</div>
+                                        <span class="text-sm">SkyWalker</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 uppercase">Pending
+                                        Review</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button
+                                            class="p-2 text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">check_circle</span>
+                                        </button>
+                                        <button
+                                            class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                                            <span class="material-icons-round text-xl">cancel</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div
+                class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col">
+                <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Recent Reports</h2>
+                    <span
+                        class="bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 text-xs px-2 py-0.5 rounded-full font-bold">4
+                        New</span>
+                </div>
+                <div class="p-6 flex-1 space-y-6">
+                    <div class="flex gap-4">
+                        <div class="shrink-0">
+                            <div
+                                class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/20 flex items-center justify-center text-red-600">
+                                <span class="material-icons-round">report_problem</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold">Spam Content</span>
+                                <span class="text-xs text-slate-400">2m ago</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">"Check out this link for
+                                free gems..." in General Discussion</p>
+                            <div class="flex items-center gap-3 pt-2">
+                                <button
+                                    class="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase">Review
+                                    Post</button>
+                                <button
+                                    class="text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="shrink-0">
+                            <div
+                                class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/20 flex items-center justify-center text-amber-600">
+                                <span class="material-icons-round">gavel</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold">Harassment</span>
+                                <span class="text-xs text-slate-400">14m ago</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">User ToxicGamer77
+                                reported for targeted insults in comments section.</p>
+                            <div class="flex items-center gap-3 pt-2">
+                                <button
+                                    class="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase">Review
+                                    User</button>
+                                <button
+                                    class="text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="shrink-0">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+                                <span class="material-icons-round">image_not_supported</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold">Copyright Claim</span>
+                                <span class="text-xs text-slate-400">45m ago</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">DMCA notice received for
+                                'Legend of the North' scanlation chapters 1-5.</p>
+                            <div class="flex items-center gap-3 pt-2">
+                                <button
+                                    class="text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase">View
+                                    Notice</button>
+                                <button
+                                    class="text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-50 dark:bg-slate-800/50 text-center">
+                    <button
+                        class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">See
+                        all active reports</button>
+                </div>
+            </div>
+        </div>
+        <footer
+            class="mt-10 p-6 bg-blue-600 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <div class="p-2 bg-white/20 rounded-lg">
+                    <span class="material-icons-round">info</span>
+                </div>
+                <div>
+                    <h4 class="font-bold">System Maintenance Scheduled</h4>
+                    <p class="text-sm text-blue-100">The platform will be undergoing maintenance on Sunday, Oct 12th at
+                        03:00 AM GMT.</p>
+                </div>
+            </div>
+            <button
+                class="px-6 py-2 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-colors shrink-0">
+                Acknowledge
+            </button>
+        </footer>
+    </main>
+
+</body>
+
+</html>
