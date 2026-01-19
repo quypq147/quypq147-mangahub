@@ -8,12 +8,17 @@ const cors = require("cors");
 
 // Routes
 const mangaRoutes = require("./routes/mangaRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/manga", mangaRoutes);
+app.use("/api/auth", authRoutes);
+
+// Static files
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;

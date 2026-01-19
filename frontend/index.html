@@ -4,31 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quypq147-mangahub - Index</title>
+    <title>Quypq147-mangahub - Trang chủ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-gray-900 text-gray-100 font-sans flex flex-col min-h-screen">
 
-    <nav class="bg-gray-800 border-b border-gray-700">
+    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-bold text-blue-500">Manga<span
                             class="text-white">Hub</span></a>
                     <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
+                        <div class="user-nav ml-10 flex items-baseline space-x-4">
                             <a href="manga/index.html"
                                 class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Manga</a>
-                            <a href="forum.html"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Thảo luận</a>
+                            <a href="forum/index.html"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Thảo
+                                luận</a>
+                            <a href="about-us.html"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Về
+                                chúng tôi</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-5">
-                    <a href="sign-in.html"
+                <div id="auth-container" class="flex items-center gap-5 relative">
+                    <a href="sign-in/index.html"
                         class="text-red-400 border border-red-400 hover:bg-red-400 hover:text-white px-3 py-1 rounded-md text-sm transition">
                         <i class="fa-solid fa-lock"></i> Đăng nhập
                     </a>
@@ -37,42 +51,229 @@
         </div>
     </nav>
 
-    <div class="bg-gray-800 py-10">
+    <div class="bg-gray-800 py-10 shadow-md">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">Manga do Quypq147 dịch và đăng</h1>
+            <h1 class="text-4xl font-bold mb-4 text-white">Manga do <span class="text-blue-500">Quypq147</span> dịch và
+                đăng</h1>
+            <p class="text-gray-400">Cập nhật những bộ truyện mới nhất mỗi ngày</p>
         </div>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3 mb-6">Tập mới nhất</h2>
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
 
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
-                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg truncate">One Piece</h3>
-                    <p class="text-sm text-gray-400 mt-1">Tập 1089</p>
-                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
-                        <span><i class="fa-solid fa-flag"></i> EN/JP</span>
-                        <span>2h trước</span>
-                    </div>
-                </div>
-            </div>
+        <div id="loading" class="text-center py-20">
+            <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500"></i>
+            <p class="mt-4 text-gray-400">Đang tải dữ liệu...</p>
+        </div>
 
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
-                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg truncate">Naruto</h3>
-                    <p class="text-sm text-gray-400 mt-1">Tập 72 (End)</p>
-                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
-                        <span><i class="fa-solid fa-flag"></i> VI</span>
-                        <span>1 ngày trước</span>
-                    </div>
+        <div id="no-data-message" class="hidden text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
+            <i class="fa-solid fa-folder-open text-6xl text-gray-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-300">Hiện tại chưa có manga nào trong dữ liệu</h2>
+            <p class="text-gray-500 mt-2">Vui lòng quay lại sau hoặc liên hệ Admin để thêm truyện.</p>
+        </div>
+
+        <div id="content-area" class="hidden space-y-12">
+
+            <section>
+                <div class="flex items-center justify-between mb-6 border-l-4 border-yellow-500 pl-4">
+                    <h2 class="text-2xl font-bold text-white">🔥 Manga Nổi Bật (Trending)</h2>
                 </div>
-            </div>
+                <div class="flex overflow-x-auto space-x-6 pb-6 no-scrollbar" id="trending-container">
+                </div>
+            </section>
+
+            <section>
+                <div class="flex items-center justify-between mb-6 border-l-4 border-blue-500 pl-4">
+                    <h2 class="text-2xl font-bold text-white">📅 Mới Cập Nhật</h2>
+                    <a href="manga/index.html" class="text-sm text-blue-400 hover:text-blue-300">Xem tất cả <i
+                            class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="latest-container">
+                </div>
+            </section>
+
         </div>
     </main>
 
+    <footer class="bg-gray-800 border-t border-gray-700 py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Quypq147 MangaHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. XỬ LÝ GIAO DIỆN XÁC THỰC (AUTH UI) ---
+        function checkLoginStatus() {
+
+            const authContainer = document.getElementById('auth-container');
+            const navContainer = document.querySelector('.user-nav'); // Chọn container menu chính
+
+            const token = localStorage.getItem('token');
+            const userStr = localStorage.getItem('user');
+
+            if (token && userStr) {
+                const user = JSON.parse(userStr);
+                const initial = user.username ? user.username.charAt(0).toUpperCase() : 'U';
+                // A. THÊM LINK ADMIN VÀO NAVBAR (Nếu là Admin)
+                // Chỉ hiện nếu user là admin và link chưa tồn tại
+                if (user.role === 'admin' && navContainer && !document.getElementById('nav-admin-link')) {
+                    const adminLinkHTML = `
+                        <a href="admin/" id="nav-admin-link" class="text-yellow-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            <i class="fa-solid fa-user-shield mr-1"></i> Quản trị
+                        </a>
+                    `;
+                    navContainer.insertAdjacentHTML('beforeend', adminLinkHTML);
+                }
+
+                // B. KIỂM TRA QUYỀN UPLOAD CHO DROPDOWN
+                // Admin và Uploader đều được thấy nút Upload trong dropdown avatar
+                const allowedRoles = ['admin', 'uploader'];
+                const showUploadLink = allowedRoles.includes(user.role);
+                const uploadLinkHTML = showUploadLink
+                    ? `<a href="user/upload.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                         <i class="fa-solid fa-cloud-upload mr-2 text-green-500"></i> Upload Truyện
+                       </a>`
+                    : '';
+
+                // C. THAY THẾ NÚT ĐĂNG NHẬP BẰNG AVATAR USER
+                authContainer.innerHTML = `
+                    <div class="relative group z-50">
+                        <button class="flex items-center gap-3 focus:outline-none">
+                            <div class="text-right hidden md:block">
+                                <p class="text-sm font-bold text-white">${user.fullname || user.username}</p>
+                                <p class="text-xs text-green-400 capitalize">${user.role}</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-700 group-hover:border-blue-500 transition">
+                                ${initial}
+                            </div>
+                        </button>
+
+                        <div class="absolute right-0 pt-2 w-56 hidden group-hover:block animate-fade-in">
+                            <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-gray-700 bg-gray-750">
+                                    <p class="text-sm text-white font-bold truncate">${user.username}</p>
+                                    <p class="text-xs text-gray-400 truncate">${user.email}</p>
+                                </div>
+                                
+                                <a href="user/" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                                    <i class="fa-solid fa-user mr-2 text-blue-500"></i> Hồ sơ cá nhân
+                                </a>
+                                
+                                ${uploadLinkHTML}
+
+                                <a href="user/book-marked.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                                    <i class="fa-solid fa-bookmark mr-2 text-yellow-500"></i> Truyện đã lưu
+                                </a>
+
+                                <div class="border-t border-gray-700 my-1"></div>
+                                <button onclick="handleLogout()" class="block w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-red-900/20 hover:text-red-300 transition">
+                                    <i class="fa-solid fa-right-from-bracket mr-2"></i> Đăng xuất
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.reload();
+            }
+        }
+
+        // --- 2. LOGIC TẢI DỮ LIỆU (DATA FETCHING) ---
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            // Chạy kiểm tra đăng nhập ngay khi tải trang
+            checkLoginStatus();
+
+            const loading = document.getElementById('loading');
+            const noDataMsg = document.getElementById('no-data-message');
+            const contentArea = document.getElementById('content-area');
+            const trendingContainer = document.getElementById('trending-container');
+            const latestContainer = document.getElementById('latest-container');
+
+            try {
+                // Gọi API lấy danh sách truyện
+                const response = await fetch('http://localhost:3000/api/manga');
+                if (!response.ok) throw new Error('Không thể kết nối đến Server');
+
+                const allManga = await response.json();
+
+                if (!allManga || allManga.length === 0) {
+                    loading.classList.add('hidden');
+                    noDataMsg.classList.remove('hidden');
+                    return;
+                }
+
+                // Sắp xếp dữ liệu
+                // Trending: Theo rating cao -> thấp
+                const trendingManga = [...allManga].sort((a, b) => (b.rating || 0) - (a.rating || 0)).slice(0, 5);
+                // Mới nhất: Theo ngày publish mới -> cũ
+                const latestManga = [...allManga].sort((a, b) => {
+                    const dateA = new Date(a.publishedDate || 0);
+                    const dateB = new Date(b.publishedDate || 0);
+                    return dateB - dateA;
+                }).slice(0, 10);
+
+                // Render Trending (Thanh cuộn ngang)
+                trendingManga.forEach(manga => {
+                    const html = `
+                        <div class="flex-none w-48 bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700 hover:border-yellow-500 transition group relative">
+                             <a href="manga/detail.html?id=${manga._id}">
+                                <div class="absolute top-2 left-2 bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-1 rounded z-10">
+                                    <i class="fa-solid fa-star"></i> ${manga.rating || 0}
+                                </div>
+                                <img src="${manga.coverImage || 'https://placehold.co/300x450?text=No+Cover'}" 
+                                     alt="${manga.title}" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                                <div class="p-3">
+                                    <h3 class="font-bold text-white truncate text-base">${manga.title}</h3>
+                                    <p class="text-xs text-gray-400 mt-1 truncate">${manga.author}</p>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                    trendingContainer.innerHTML += html;
+                });
+
+                // Render Mới cập nhật (Lưới)
+                latestManga.forEach(manga => {
+                    const html = `
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition group">
+                            <a href="manga/detail.html?id=${manga._id}">
+                                <div class="relative">
+                                    <img src="${manga.coverImage || 'https://placehold.co/300x450?text=No+Cover'}" 
+                                         alt="${manga.title}" class="w-full h-64 object-cover">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
+                                         <p class="text-xs text-white"><i class="fa-solid fa-book-open"></i> ${manga.chapters} Chapters</p>
+                                    </div>
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-blue-400 group-hover:underline truncate">${manga.title}</h3>
+                                    <div class="mt-2 flex justify-between items-center text-xs text-gray-500">
+                                        <span class="bg-gray-700 px-2 py-1 rounded text-gray-300">${manga.status || 'Ongoing'}</span>
+                                        <span>${manga.rating ? manga.rating + '/5' : 'N/A'}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                    latestContainer.innerHTML += html;
+                });
+
+                loading.classList.add('hidden');
+                contentArea.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error:", error);
+                loading.innerHTML = `<p class="text-red-500">Lỗi: ${error.message}</p>`;
+            }
+        });
+    </script>
 </body>
 
 </html>
