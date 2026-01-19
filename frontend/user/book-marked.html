@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bookmarked Manga Library - MangaCloud</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b6cee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- TopNavBar -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-10 py-3 bg-white dark:bg-background-dark sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-4 text-primary">
+                    <div class="size-6">
+                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
+                                fill="currentColor"></path>
+                            <path clip-rule="evenodd"
+                                d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                        MangaCloud</h2>
+                </div>
+                <nav class="flex items-center gap-9">
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Explore</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Community</a>
+                    <a class="text-primary text-sm font-bold" href="#">My Library</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="#">News</a>
+                </nav>
+            </div>
+            <div class="flex flex-1 justify-end gap-6 items-center">
+                <label class="flex flex-col min-w-40 h-10 max-w-64">
+                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                        <div
+                            class="text-[#92a4c9] flex border-none bg-slate-100 dark:bg-[#232f48] items-center justify-center pl-4 rounded-l-lg">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-100 dark:bg-[#232f48] text-slate-900 dark:text-white focus:ring-0 placeholder:text-[#92a4c9] px-4 rounded-r-lg pl-2 text-base font-normal"
+                            placeholder="Search library..." />
+                    </div>
+                </label>
+                <div class="flex gap-2">
+                    <button
+                        class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#232f48] text-slate-600 dark:text-white hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <button
+                        class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#232f48] text-slate-600 dark:text-white hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined">account_circle</span>
+                    </button>
+                </div>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20"
+                    data-alt="User profile avatar"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhIgEatOAU8RdsyY0AF4zaRoAhO1ec8LTz0qsbUc03-nFOKVxSBp1h3I_0FM23WWXU-m9Z9gQuDMge6AAsrQRovAS9v9WevnAbcP0UzVTqgMIXrMsbJIJ7F-1qWbnMG6MJp-Y1ObvzJ2f6gWz9JBpL7X6_MX6IKGTlkkmPgH9J6xnArj6a4OzcuR60ng5raFlFqwNQ00Bafv9x_-QOXhH93mbE76fBfG2y3ZbEMYpQUHBIo_Vbkg1fVp9BhMZzrSrp-5vn_sBjSXs");'>
+                </div>
+            </div>
+        </header>
+        <main class="flex flex-1 justify-center py-8">
+            <div class="layout-content-container flex flex-col max-w-[1200px] flex-1 px-4 md:px-10">
+                <!-- Breadcrumbs -->
+                <div class="flex flex-wrap gap-2 items-center mb-4">
+                    <a class="text-[#92a4c9] text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Dashboard</a>
+                    <span class="text-[#92a4c9] text-sm font-medium">/</span>
+                    <span class="text-slate-900 dark:text-white text-sm font-bold">Bookmarks</span>
+                </div>
+                <!-- PageHeading -->
+                <div class="flex flex-wrap justify-between items-end gap-3 mb-8">
+                    <div class="flex min-w-72 flex-col gap-2">
+                        <h1
+                            class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                            Bookmarked Manga</h1>
+                        <p class="text-slate-500 dark:text-[#92a4c9] text-base font-normal">42 titles currently in your
+                            collection</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center gap-2 px-4 h-10 bg-slate-100 dark:bg-[#232f48] text-slate-900 dark:text-white rounded-lg text-sm font-bold border border-transparent hover:border-primary/50 transition-all">
+                            <span class="material-symbols-outlined">grid_view</span>
+                            Comfortable
+                        </button>
+                    </div>
+                </div>
+                <!-- Chips / Filter Bar -->
+                <div class="flex gap-3 mb-8 flex-wrap">
+                    <div
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary px-6 cursor-pointer text-white font-bold shadow-lg shadow-primary/20">
+                        <p class="text-sm">All Titles</p>
+                    </div>
+                    <div
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#232f48] px-6 cursor-pointer text-slate-600 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/20 hover:text-primary transition-all">
+                        <p class="text-sm font-medium">Reading</p>
+                    </div>
+                    <div
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#232f48] px-6 cursor-pointer text-slate-600 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/20 hover:text-primary transition-all">
+                        <p class="text-sm font-medium">On Hold</p>
+                    </div>
+                    <div
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#232f48] px-6 cursor-pointer text-slate-600 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/20 hover:text-primary transition-all">
+                        <p class="text-sm font-medium">Dropped</p>
+                    </div>
+                    <div
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-[#232f48] px-6 cursor-pointer text-slate-600 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/20 hover:text-primary transition-all">
+                        <p class="text-sm font-medium">Completed</p>
+                    </div>
+                </div>
+                <!-- Manga Card Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                    <!-- Card 1 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="One Piece manga cover art"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmNB8Egiobed-YmQxgi0qyCxZ-ZS3MfMrsBcIyVQL98l6z7UaGCSS0ntallUORtXTfic8DXzFLKKMwOuNkD139pL80nZkAaLkYA2iUXv2lGgSN1CDis3h6qyaOvdSan_csYpjJDeTePCyLr6xxxlpRyEt2nFbw_HZgu3cXPXHRQ3uCyaPjNNAGIad1xoWR9L-HqIdY687AQuefV3jvZeNWzAAWS3QNB_cEoap2Y56seklzwG4KZCPsGvH1im6Xw-Zp6VwPSU_5Qhc");'>
+                            </div>
+                            <!-- Badge -->
+                            <div
+                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
+                                New Chapter</div>
+                            <!-- Remove Icon -->
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <!-- Info Overlay -->
+                            <div class="absolute bottom-3 left-3 right-3 flex flex-col gap-1">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 1102 / 1115</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                One Piece</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Chainsaw Man manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNjAlpZLgYZEAsVA6JGmqkMxftRfN70-9oE_6Lj84ZrPJAOm1yE9fxq4lUlY7bS7hcexRQF1YXYKvP_J0i29TMvpL0AA3TjXxGfSj8BxVdnkX6tOf_izf03S73M1n2uwfxNjdNwPguSIZmwIKR3E7oE8-lCjoc_dHH48_aiCp6q1wvC54TDJSF0f3d0VONYhxCgSKZgrMzMV1FtIkrNx_qthLv-zj-IJOMGAjscvCXhMa_TkDZsvEZ2Jx8Jr0g_jVoVyWOxtsp0lI");'>
+                            </div>
+                            <div
+                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
+                                New Chapter</div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 145 / 158</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Chainsaw Man</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Oshi no Ko manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6V_aG3OzndN-cuUrj6IqjLtZNoUn9PG8C4ZSoR8wqc7mmla9KOMjNwyUIZQp_hrpV5g__C6A7hkxdsrRA9EIU8Wzz9pXMl0OaZK_v6z6xR140p5dB7w9MVggpIWflSvwFPCl3qzcsWmbFWu00H4FQ-wzYpqtPDjXvN9uZDs3QjAf7aaCLXseAbodRbWNU5KemS3LKdT0yJOi_bBMYoyRneW2PTag9azUk-827RrTGEcpEVAz2BJx2ttzh1LBXBUgffbZkDWHiUdU");'>
+                            </div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 142 / 142</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Oshi no Ko</h3>
+                            <button
+                                class="w-full bg-slate-200 dark:bg-[#232f48] hover:bg-primary/20 text-slate-900 dark:text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                Up to date
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Solo Leveling manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6wQ5qjI6vThNahbjMslOoEaD-JNtTiZbDbEqC-R_4-f5iOGRcb-OAlPY2RVH1ySouxOqjz1b3oZ494P-RcoKWvl2tlGZVLA-uq3EXX_RcpM1k3QEAJuH-i7f9-63_j2-Q8UIjrGuw7h4Xg6JFFQFq-Pn-1msAS_MJ2V5k557XwPyLxHpy5zE2GCWkw78vy1OFvzyJ9QqeWtuyZ60Ayd0Zjv1_iv0I2WmxJ5oWKfqrfswUZkDu3xwRfvL1AVyC2wdZ4r7wQHKK8LU");'>
+                            </div>
+                            <div
+                                class="absolute top-2 left-2 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
+                                Completed</div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Solo Leveling</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">restart_alt</span>
+                                Read Again
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Blue Lock manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrLAlvPGo469CtGpifqjDNl1sm3gOsUYWI_g7KXgJZ7b_sfHLr4PbTkbEWotAaOKlUeENvDuIL9JJzCsUdnyMmnFv7fD-KDKz9a0v_xjsSByGWSk0_8cwn0dHicPvA7cQcFps19IvrJqJnmdYtqcaaRWi8cNecQhvsx7nJG8ABJranD4Ipkazl9PEuqZ7Yb8Uw2CVyxJfYLpHOA_bNrwVmSwCspKpju-OorssNcAkTs1QVgsdMt0gbLPaPLqp1JDwt0wYpV9Rik2Q");'>
+                            </div>
+                            <div
+                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
+                                New Chapter</div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 248 / 252</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Blue Lock</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Kaiju No. 8 manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDS-FbUmKolbLdFak7v_Xc-Uh2fA33YSiTpIkrm_7TzPfr_ahIpIRXRwQTRPIaJC9WoopcQ4-lJ-OeWGLHjJw_PaeWp_wttIbe6wI5Zjnlty93xe-odS-cHNxoyrcULT6u_9b2Oay4FoVacQIpPGs7JasHd_FANixXCx1KZSBTzCDzZMyCP_e5Uz8Fjfv7JMk84-dmGVIt8G62vhbbNx19-N3WCvINhHBBNo8ndqzxDuUY8ojmpEDDdpJ5U739v04shICXHXHzCp5o");'>
+                            </div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 99 / 102</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Kaiju No. 8</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Spy x Family manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDblLRQK7fM5CiSYM9DHpYNJHIKXQIE_Grgoj6CVkqq5-Zh4b0gh76f5nGFrwyN1GvuAf5wNczbItYmYl-RwIG2c9RJgI9zBm9kfo3w1Lmz2MXRX5ctJpsIazHDPEBF0Los190LBtQlgZiAoYvmvE7BtvKmDi_k1Dc_dL94PXnnYASRD7TVBWxhjzLj-BQlRgMEbEhgWsR0uqvE5ficEfRXUg1heBB76JOgDECCGYnFpde2qEN7JFSqUAp94nCnxKhUl_JuoboNiqA");'>
+                            </div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 92 / 94</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Spy x Family</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="group relative flex flex-col gap-3">
+                        <div
+                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                data-alt="Jujutsu Kaisen manga cover"
+                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmIJbdXKNd8a0QTYED-KF3_Lz9FFFWAiS7FVmRIqL8M4TMhm5BACZJJBZB94mwGgT4KQdtFIuefZUGtk3rmsoWZXQxV9wK_uYth1fcJKqVbD_6fnmLDWRxoFUdT_JQlcYWgdejeTF6oY91ydh4XOiMglLB7d9YrSLtQMchKJ8lXvdIYNQWrKMW66c_BtTwxy6qRpDxfiUPq7q_06NcriZGadl_pPBYX7gf3OWIWwohTOcbwY0omay7l4NZ-LFHc2Vuw8JoyOYC65c");'>
+                            </div>
+                            <div
+                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
+                                New Chapter</div>
+                            <button
+                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <p class="text-white text-xs font-medium opacity-80">Ch. 240 / 256</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                Jujutsu Kaisen</h3>
+                            <button
+                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                Continue Reading
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer / Load More -->
+                <div class="flex justify-center mt-12 pb-12">
+                    <button
+                        class="flex items-center gap-2 px-8 h-12 bg-white dark:bg-[#232f48] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl text-base font-bold hover:border-primary/50 transition-all">
+                        Load More Titles
+                        <span class="material-symbols-outlined">expand_more</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

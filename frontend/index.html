@@ -8,10 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Hide scrollbar for horizontal scrolling */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -25,18 +25,25 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-blue-500">Manga<span class="text-white">Hub</span></a>
+                    <a href="index.html" class="text-2xl font-bold text-blue-500">Manga<span
+                            class="text-white">Hub</span></a>
                     <div class="hidden md:block">
                         <div class="user-nav ml-10 flex items-baseline space-x-4">
-                            <a href="manga/index.html" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Manga</a>
-                            <a href="forum/index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Thảo luận</a>
-                            <a href="about-us.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Về chúng tôi</a>
+                            <a href="manga/index.html"
+                                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Manga</a>
+                            <a href="forum/index.html"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Thảo
+                                luận</a>
+                            <a href="about-us.html"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Về
+                                chúng tôi</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="auth-container" class="flex items-center gap-5 relative">
-                    <a href="sign-in/index.html" class="text-red-400 border border-red-400 hover:bg-red-400 hover:text-white px-3 py-1 rounded-md text-sm transition">
+                    <a href="sign-in/index.html"
+                        class="text-red-400 border border-red-400 hover:bg-red-400 hover:text-white px-3 py-1 rounded-md text-sm transition">
                         <i class="fa-solid fa-lock"></i> Đăng nhập
                     </a>
                 </div>
@@ -46,13 +53,14 @@
 
     <div class="bg-gray-800 py-10 shadow-md">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4 text-white">Manga do <span class="text-blue-500">Quypq147</span> dịch và đăng</h1>
+            <h1 class="text-4xl font-bold mb-4 text-white">Manga do <span class="text-blue-500">Quypq147</span> dịch và
+                đăng</h1>
             <p class="text-gray-400">Cập nhật những bộ truyện mới nhất mỗi ngày</p>
         </div>
     </div>
 
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
-        
+
         <div id="loading" class="text-center py-20">
             <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500"></i>
             <p class="mt-4 text-gray-400">Đang tải dữ liệu...</p>
@@ -65,23 +73,24 @@
         </div>
 
         <div id="content-area" class="hidden space-y-12">
-            
+
             <section>
                 <div class="flex items-center justify-between mb-6 border-l-4 border-yellow-500 pl-4">
                     <h2 class="text-2xl font-bold text-white">🔥 Manga Nổi Bật (Trending)</h2>
                 </div>
                 <div class="flex overflow-x-auto space-x-6 pb-6 no-scrollbar" id="trending-container">
-                    </div>
+                </div>
             </section>
 
             <section>
                 <div class="flex items-center justify-between mb-6 border-l-4 border-blue-500 pl-4">
                     <h2 class="text-2xl font-bold text-white">📅 Mới Cập Nhật</h2>
-                    <a href="manga/index.html" class="text-sm text-blue-400 hover:text-blue-300">Xem tất cả <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="manga/index.html" class="text-sm text-blue-400 hover:text-blue-300">Xem tất cả <i
+                            class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="latest-container">
-                    </div>
+                </div>
             </section>
 
         </div>
@@ -96,21 +105,21 @@
     <script>
         // --- 1. XỬ LÝ GIAO DIỆN XÁC THỰC (AUTH UI) ---
         function checkLoginStatus() {
+
             const authContainer = document.getElementById('auth-container');
             const navContainer = document.querySelector('.user-nav'); // Chọn container menu chính
-            
+
             const token = localStorage.getItem('token');
             const userStr = localStorage.getItem('user');
 
             if (token && userStr) {
                 const user = JSON.parse(userStr);
                 const initial = user.username ? user.username.charAt(0).toUpperCase() : 'U';
-
                 // A. THÊM LINK ADMIN VÀO NAVBAR (Nếu là Admin)
                 // Chỉ hiện nếu user là admin và link chưa tồn tại
                 if (user.role === 'admin' && navContainer && !document.getElementById('nav-admin-link')) {
                     const adminLinkHTML = `
-                        <a href="admin.html" id="nav-admin-link" class="text-yellow-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <a href="admin/" id="nav-admin-link" class="text-yellow-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             <i class="fa-solid fa-user-shield mr-1"></i> Quản trị
                         </a>
                     `;
@@ -121,10 +130,10 @@
                 // Admin và Uploader đều được thấy nút Upload trong dropdown avatar
                 const allowedRoles = ['admin', 'uploader'];
                 const showUploadLink = allowedRoles.includes(user.role);
-                const uploadLinkHTML = showUploadLink 
-                    ? `<a href="admin.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                const uploadLinkHTML = showUploadLink
+                    ? `<a href="user/upload.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
                          <i class="fa-solid fa-cloud-upload mr-2 text-green-500"></i> Upload Truyện
-                       </a>` 
+                       </a>`
                     : '';
 
                 // C. THAY THẾ NÚT ĐĂNG NHẬP BẰNG AVATAR USER
@@ -133,7 +142,7 @@
                         <button class="flex items-center gap-3 focus:outline-none">
                             <div class="text-right hidden md:block">
                                 <p class="text-sm font-bold text-white">${user.fullname || user.username}</p>
-                                <p class="text-xs text-green-400 capitalize">${user.role || 'Thành viên'}</p>
+                                <p class="text-xs text-green-400 capitalize">${user.role}</p>
                             </div>
                             <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-700 group-hover:border-blue-500 transition">
                                 ${initial}
@@ -147,13 +156,13 @@
                                     <p class="text-xs text-gray-400 truncate">${user.email}</p>
                                 </div>
                                 
-                                <a href="#" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                                <a href="user/" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
                                     <i class="fa-solid fa-user mr-2 text-blue-500"></i> Hồ sơ cá nhân
                                 </a>
                                 
                                 ${uploadLinkHTML}
 
-                                <a href="#" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                                <a href="user/book-marked.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
                                     <i class="fa-solid fa-bookmark mr-2 text-yellow-500"></i> Truyện đã lưu
                                 </a>
 
@@ -169,16 +178,16 @@
         }
 
         function handleLogout() {
-            if(confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                window.location.reload(); 
+                window.location.reload();
             }
         }
 
         // --- 2. LOGIC TẢI DỮ LIỆU (DATA FETCHING) ---
         document.addEventListener('DOMContentLoaded', async () => {
-            
+
             // Chạy kiểm tra đăng nhập ngay khi tải trang
             checkLoginStatus();
 
@@ -192,7 +201,7 @@
                 // Gọi API lấy danh sách truyện
                 const response = await fetch('http://localhost:3000/api/manga');
                 if (!response.ok) throw new Error('Không thể kết nối đến Server');
-                
+
                 const allManga = await response.json();
 
                 if (!allManga || allManga.length === 0) {
@@ -266,4 +275,5 @@
         });
     </script>
 </body>
+
 </html>
