@@ -58,8 +58,8 @@
                         class="material-symbols-outlined text-primary text-2xl group-hover:-translate-x-1 transition-transform">arrow_back</span>
                 </a>
                 <div class="flex flex-col">
-                    <h1 class="font-bold text-sm md:text-base leading-tight">One Piece</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Chapter 1089: The Siege of Egghead</p>
+                    <h1 id="manga-title" class="font-bold text-sm md:text-base leading-tight">Loading...</h1>
+                    <p id="chapter-title" class="text-xs text-slate-500 dark:text-slate-400">Loading...</p>
                 </div>
             </div>
             <div class="flex items-center gap-2 md:gap-4">
@@ -99,32 +99,35 @@
         <div class="w-full max-w-4xl px-4 flex flex-col items-center">
             <div class="mb-6 flex flex-col items-center">
                 <div class="text-2xl font-bold tracking-wider text-slate-400 dark:text-slate-500">
-                    <span class="text-primary">01</span> <span class="mx-2">/</span> 24
+                    <span id="current-page-num" class="text-primary">1</span>
+                    <span class="mx-2">/</span>
+                    <span id="total-pages">--</span>
                 </div>
                 <div class="w-48 h-1 bg-slate-200 dark:bg-slate-800 rounded-full mt-2 overflow-hidden">
-                    <div class="h-full bg-primary w-[4.16%]"></div>
+                    <div id="progress-bar" class="h-full bg-primary w-0 transition-all duration-300"></div>
                 </div>
             </div>
             <div class="relative w-full flex justify-center group">
-                <div class="nav-overlay left-0" title="Trang trước"></div>
-                <div class="nav-overlay right-0" title="Trang tiếp theo"></div>
-                <img alt="Manga Page 1" class="max-h-[85vh] w-auto manga-page-shadow rounded-sm select-none"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCb17geM7XIiavJ9rR9h7DqD407w0OKvSXZi07W6U-E91gBDMTxqmBz0dxOQRhCYrk5QDpbmLftyAXUNv09PtmsJ-QfX60Ommb5Il1ED8OFyYuf8VVQ3z81C52TxzUMk_8BVFLU-GAfDZtfGikGV8qiiV7xrz33pMYt0mVlxt1LGcWGc9ZjTdTaByI1n1X6TDBlpux2qCprppnjxxRFkbmdzKaAANgG0MnnWDCWXoL_pL-2BKpX7_aUUPOMTfcSYkl_NBxN7pqxns" />
+                <div onclick="prevPage()" class="nav-overlay left-0" title="Trang trước"></div>
+                <div onclick="nextPage()" class="nav-overlay right-0" title="Trang tiếp theo"></div>
+                <img id="manga-image" alt="Manga Page"
+                    class="max-h-[85vh] w-auto manga-page-shadow rounded-sm select-none" src="" />
             </div>
-            <div class="mt-8 flex items-center gap-6">
-                <button
-                    class="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-semibold">
-                    <span class="material-symbols-outlined">first_page</span>
-                </button>
-                <button
-                    class="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white hover:opacity-90 transition-opacity font-bold shadow-lg shadow-primary/20">
-                    Trang tiếp <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-                <button
-                    class="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-semibold">
-                    <span class="material-symbols-outlined">last_page</span>
-                </button>
-            </div>
+        </div>
+        <div class="mt-8 flex items-center gap-6">
+            <button
+                class="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-semibold">
+                <span class="material-symbols-outlined">first_page</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white hover:opacity-90 transition-opacity font-bold shadow-lg shadow-primary/20">
+                Trang tiếp <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-semibold">
+                <span class="material-symbols-outlined">last_page</span>
+            </button>
+        </div>
         </div>
         <section class="w-full max-w-3xl px-6 mt-24">
             <div
@@ -202,7 +205,8 @@
                                         <span class="material-symbols-outlined text-sm">thumb_up</span> 42
                                     </button>
                                     <button
-                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả lời</button>
+                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả
+                                        lời</button>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +227,8 @@
                                         <span class="material-symbols-outlined text-sm">thumb_up</span> 15
                                     </button>
                                     <button
-                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả lời</button>
+                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả
+                                        lời</button>
                                 </div>
                             </div>
                         </div>
@@ -256,5 +261,93 @@
     </aside>
 
 </body>
+<script>
+    // --- 1. STATE VARIABLES ---
+    let pages = [];          // Array to store image URLs
+    let currentPageIndex = 0; // Tracks which page user is reading (0, 1, 2...)
+    
+    // Get URL Params (e.g., reader.html?id=123&chapter=5)
+    const urlParams = new URLSearchParams(window.location.search);
+    const mangaId = urlParams.get('id');
+    const chapterNum = urlParams.get('chapter');
 
+    // --- 2. INITIALIZATION ---
+    async function initReader() {
+        if (!mangaId || !chapterNum) {
+            alert("Missing manga ID or chapter number in URL");
+            return;
+        }
+
+        try {
+            // Fetch data from our new Backend API
+            const response = await fetch(`http://localhost:3000/api/chapters/${mangaId}/${chapterNum}`);
+            
+            if (!response.ok) throw new Error("Failed to load chapter");
+
+            const data = await response.json();
+
+            // Store the pages
+            pages = data.pages; 
+            
+            // Update Text UI
+            document.getElementById('manga-title').innerText = data.mangaTitle;
+            document.getElementById('chapter-title').innerText = `Chapter ${chapterNum}: ${data.chapterTitle || ''}`;
+            document.getElementById('total-pages').innerText = pages.length;
+
+            // Render the first page
+            renderPage(0);
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('manga-title').innerText = "Error loading chapter";
+        }
+    }
+
+    // --- 3. RENDER FUNCTION ---
+    function renderPage(index) {
+        // Validation: Don't go below 0 or above total pages
+        if (index < 0 || index >= pages.length) return;
+
+        currentPageIndex = index;
+
+        // Update Image Source
+        const imgElement = document.getElementById('manga-image');
+        imgElement.src = pages[index];
+
+        // Update Counters
+        document.getElementById('current-page-num').innerText = index + 1;
+
+        // Update Progress Bar Width
+        const percentage = ((index + 1) / pages.length) * 100;
+        document.getElementById('progress-bar').style.width = `${percentage}%`;
+        
+        // Scroll to top slightly for better UX on mobile
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- 4. NAVIGATION CONTROLS ---
+    function nextPage() {
+        if (currentPageIndex < pages.length - 1) {
+            renderPage(currentPageIndex + 1);
+        } else {
+            alert("You reached the end of the chapter!");
+            // Future feature: Redirect to next chapter automatically
+        }
+    }
+
+    function prevPage() {
+        if (currentPageIndex > 0) {
+            renderPage(currentPageIndex - 1);
+        }
+    }
+
+    // Keyboard Shortcuts (Arrow Keys)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "ArrowRight") nextPage();
+        if (e.key === "ArrowLeft") prevPage();
+    });
+
+    // Run on Load
+    initReader();
+</script>
 </html>

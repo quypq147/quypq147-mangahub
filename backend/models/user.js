@@ -12,6 +12,8 @@ const UserSchema = mongoose.Schema({
         enum: ['user', 'admin', 'uploader', 'moderator'],
         default: 'user'
     },
+    avatar: { type: String, default: 'default-avatar.png' },
+    bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Manga' }],
 	
     isActive: { type: Boolean, default: true }
 });

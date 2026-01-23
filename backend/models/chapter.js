@@ -7,3 +7,5 @@ const ChapterSchema = mongoose.Schema({
     pages: [{ type: String, required: true }], 
     releaseDate: { type: Date, default: Date.now }
 });
+
+module.exports = mongoose.model('Chapter', ChapterSchema);

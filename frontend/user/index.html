@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="vi">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>MangaWorld - User Profile Dashboard</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
@@ -53,92 +54,69 @@
 
 <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
-    <header
-        class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-8">
-                    <div class="flex items-center gap-2">
-                        <span class="material-icons text-primary text-3xl">auto_stories</span>
-                        <span class="font-bold text-xl tracking-tight">MangaWorld</span>
-                    </div>
-                    <nav class="hidden md:flex gap-6 text-sm font-medium">
-                        <a class="hover:text-primary transition-colors" href="#">Home</a>
-                        <a class="hover:text-primary transition-colors" href="#">Browse</a>
-                        <a class="hover:text-primary transition-colors" href="#">Community</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-primary/20">
-                        Edit Profile
-                    </button>
-                    <button
-                        class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:ring-2 ring-primary transition-all"
-                        onclick="document.documentElement.classList.toggle('dark')">
-                        <span class="material-icons text-lg dark:hidden">dark_mode</span>
-                        <span class="material-icons text-lg hidden dark:block">light_mode</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <aside class="lg:col-span-3 space-y-6">
                 <div
                     class="bg-card-light dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
                     <div class="flex flex-col items-center text-center">
-                        <div class="relative group">
-                            <img alt="User avatar"
-                                class="w-24 h-24 rounded-full border-4 border-primary/20 mb-4 object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw1o5ljVBEHQFoFR1ossWBBMA21p-puovTDtV7MJwXQ4Y6D-vzNNZkL_TyxtnRtH0bh--lGVS3rimObKixsX4WqQgkle-tE7CtlSVTlvHm1cSvao01K8Lt9SPAW_hE0Fcu4QZ8mbVTaEu_3ZoHn5h5JeFfa-rn1fuuCII-X8_PLF5XvIOB1Z1SYjm13C0GIzJnVsJaAeMFa8xOAGfpg6qniFGzmHGu71BVtDm-Zkj07SfwNGEGJAp3FC8mHdnY5mJcAsZYU1b2GA4" />
-                            <div
-                                class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                <span class="material-icons text-white">camera_alt</span>
-                            </div>
+                        <div class="relative">
+                            <img id="profile-avatar" src="https://via.placeholder.com/150"
+                                class="w-32 h-32 rounded-full border-4 border-white dark:border-slate-800 shadow-xl object-cover"
+                                alt="Profile Picture" />
+
+                            <button
+                                class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors">
+                                <span class="material-icons text-sm">camera_alt</span>
+                            </button>
                         </div>
-                        <h2 class="text-xl font-bold">LuffyFan99</h2>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">@king_of_pirates</p>
+                        <h2 id="profile-username" class="text-xl font-bold">Loading...</h2>
+                        <p id="profile-role" class="text-slate-500 dark:text-slate-400 text-sm mt-1">Loading...</p>
                         <div class="mt-4 flex gap-2 w-full">
                             <div
                                 class="flex-1 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
-                                <div class="text-xs text-slate-500">Chapters</div>
+                                <div class="text-xs text-slate-500">Chương</div>
                                 <div class="font-bold">1,240</div>
                             </div>
                             <div
                                 class="flex-1 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg border border-slate-100 dark:border-slate-800">
-                                <div class="text-xs text-slate-500">Following</div>
+                                <div class="text-xs text-slate-500">Đang theo dõi</div>
                                 <div class="font-bold">82</div>
                             </div>
+                        </div>
+                        <div class="mt-4 text-xs text-slate-500 dark:text-slate-400 space-y-1 w-full">
+                            <div id="profile-email">user@example.com</div>
+                            <div id="profile-joined">Tham gia: 2024-01-01</div>
                         </div>
                     </div>
                     <nav class="mt-8 space-y-1">
                         <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                             href="#">
                             <span class="material-icons text-[20px]">person</span>
-                            <span class="font-medium">Profile Info</span>
+                            <span class="font-medium">Thông tin hồ sơ</span>
                         </a>
                         <a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors border border-primary/20"
                             href="#">
                             <span class="material-icons text-[20px]">library_books</span>
-                            <span class="font-medium">My Library</span>
+                            <span class="font-medium">Thư viện của tôi</span>
                         </a>
                         <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                             href="#">
                             <span class="material-icons text-[20px]">forum</span>
-                            <span class="font-medium">My Comments</span>
+                            <span class="font-medium">Bình luận của tôi</span>
                         </a>
                         <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                             href="#">
                             <span class="material-icons text-[20px]">settings</span>
-                            <span class="font-medium">Settings</span>
+                            <span class="font-medium">Cài đặt</span>
                         </a>
                     </nav>
                 </div>
                 <div
                     class="bg-card-light dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Achievements</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thành tựu</h3>
                     <div class="grid grid-cols-4 gap-2">
                         <div class="aspect-square bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-500"
                             title="Collector"><span class="material-icons">workspace_premium</span></div>
@@ -156,7 +134,7 @@
                     class="bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                     <div class="border-b border-slate-200 dark:border-slate-800 px-6 pt-6">
                         <div class="flex justify-between items-center mb-6">
-                            <h1 class="text-2xl font-bold">My Library</h1>
+                            <h1 class="text-2xl font-bold">Thư viện của tôi</h1>
                             <div class="flex gap-2">
                                 <button class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400"><span
                                         class="material-icons text-sm">grid_view</span></button>
@@ -166,13 +144,13 @@
                             </div>
                         </div>
                         <div class="flex gap-8 text-sm font-medium">
-                            <button class="pb-4 border-b-2 border-primary text-primary">Reading (12)</button>
+                            <button class="pb-4 border-b-2 border-primary text-primary">Đang đọc (12)</button>
                             <button
-                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Completed
+                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Đã hoàn thành
                                 (145)</button>
                             <button
-                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Plan
-                                to Read (38)</button>
+                                class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Dự định đọc
+                                (38)</button>
                         </div>
                     </div>
                     <div class="p-6 grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -183,8 +161,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7jTCZXnaML-uMf9_6AwDRjj2dxVT8na1ea1MV-L-kSsaf2Lzxn6pEYHEREeBj91kGI_I7jIdCrPzkTVFzs0UX2QIFK24TVMgZNFxBIoArmtsIT56nc7EauirUMuHNZPh8ouV1VETFpNrWrHobADSfyUTBY3DLxb7LAJKIL8HOgpAtF5uPEp-euUoCbVV9VmVWv-a2e3YjUZOZEJbgyjzB82pkxzPwH4RFA-wgzphM8-0fsdYqnLREb93O_Ef7hUmYin7tS9p__9A" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">One Piece</h4>
@@ -200,8 +178,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWqXV-6AJJj6unTZ8ApsaBxSSEcI5C1z2iTrld7u_s9tbbK3dZhgFtAaXM1MTrVfZA8DtUfRS5zj81r4ssyrQ_22Pd9mybfLHkwKcXg9MGRMRHp5-dM80s8pr0G6T46vYrDyiNx3nQipj4P7Syegb0t-emjKEIh1z6GzK7dteUiWeF7WPXIhIM4HFrYDwia8hl7SfqWCdUs5NTpSfHbRcY6ghvVt0TwG2KJFz3XJ3_19LIVU7jVK1BM-QkQaUXIIz3lSn1ryjCKYY" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">Jujutsu Kaisen</h4>
@@ -217,8 +195,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2q1khWJDG9Du4uwIZSHYN_toMUIOwOZlIF7sW7UTjIS7tjS9ftTNnkT_9kY2uuQ_T0UPZXGTMED-XR9oOnU_oi_bUGvaxJlrnE2thdEDBMJOGjdoudQfM5I8mtIqkcq1N6j3-zYftEYxZYJM0ZYSn6o-HuudU5--6qlH5H52uT8cbrjPOr1RGt3GWsrlS7VV9bXLVvXDvAm5PWjvI3p8IYrV-aHXQABiERGbRR7QTLmRscVLEtB12tzHIC9YwpndPUxXb2qGKm1g" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">Chainsaw Man</h4>
@@ -234,8 +212,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd8asSdkarockpaG8OzINCh6nneHOHI1AfPSMbOFs90H2nxMxs93ctfpjKr72gaCbhCAin412U0RAAFszt8ASGOMAgCzvw4qF8jvxsL_3ym4xAFtQfSFC2aUIMoZsi_o_3tRDy481JXMKoJXajtxYHI-zN2edfY_sW9GDs2IhaK1WsWQ-FCMG5Gnt5sAEuxGW-ZRdL-8AiR6g4KHxzlVzlNI1mIO5PNgFK-h-rp0kmbmXcir8NbJ7UtMOVwfyqxLZZ35U1TSEPjEw" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">Spy x Family</h4>
@@ -251,8 +229,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDok3_Aq-Ozqj-lMsPYHikNmnEs_nfuFdaHKx-5N8docl2hyl8g0Zz_9HOepF3rn4sKAuaLkUO0AEzcn1t4-Poyati6WBFyvLfcJKQajrTbinJjWsX1uqOfxL0juTb7tpjGruRN7XCAkQSu5yZOGpHcGJTjmQZhbEPR23rkoAJj3Q-i8htA0Ebr7JnJWmV2LVgQYdDQozz6B_cZblXie8qREbFmFaJuzQH3FWnrc_a2TIxBbDLywIGQLJOhg15BOb9i3ynyazPPJUo" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">Blue Lock</h4>
@@ -268,8 +246,8 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWa5NkVbJtBFJLm7iR-YbactgRj69_gMogDOPrN1QNZLbmBCFJFKtbMQLOHnKhEMSYd59jYnGeRm2HM-zPl2Cft_3wgJkt22eqvtlSU0FoXHnYb39XRnBbzV62OPHU0CvUsQlCLyf_oURJ1pNB_iocnQBl3qLoN7dkbBfh6YVnGG2vr10O7FtT1ffjmR6Ck17zQGFbXZ6kD22tzhTWrgrtlJ0x38b5MdjteGnFsDHv4xs7JGAhg9-rpxDtFTF8kzLqUuMNm24c4qs" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
-                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Read
-                                        Now</button>
+                                    <button class="w-full py-2 bg-primary text-white text-xs font-bold rounded">Đọc
+                                        ngay</button>
                                 </div>
                             </div>
                             <h4 class="font-bold text-sm truncate">Sakamoto Days</h4>
@@ -280,7 +258,7 @@
                         </div>
                     </div>
                     <div class="p-6 border-t border-slate-200 dark:border-slate-800 text-center">
-                        <button class="text-sm font-semibold text-primary hover:underline">View All Reading</button>
+                        <button class="text-sm font-semibold text-primary hover:underline">Xem tất cả truyện đang đọc</button>
                     </div>
                 </div>
             </section>
@@ -393,7 +371,59 @@
             <p class="text-slate-500 text-sm">© 2024 MangaWorld Community Platform. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        async function loadProfile() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '../sign-in/index.html';
+                return;
+            }
 
+            try {
+                const res = await fetch('http://localhost:3000/api/user/profile', {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+
+                if (!res.ok) throw new Error('Failed to load profile');
+                const user = await res.json();
+
+                const usernameEl = document.getElementById('profile-username');
+                if (usernameEl && user.username) usernameEl.textContent = user.username;
+
+                const roleEl = document.getElementById('profile-role');
+                if (roleEl && user.role) roleEl.textContent = user.role.toUpperCase();
+
+                const emailEl = document.getElementById('profile-email');
+                if (emailEl && user.email) emailEl.textContent = user.email;
+
+                const joinedEl = document.getElementById('profile-joined');
+                if (joinedEl && user.createdAt) {
+                    const date = new Date(user.createdAt).toLocaleDateString();
+                    joinedEl.textContent = 'Tham gia: ' + date;
+                }
+
+                const avatarEl = document.getElementById('profile-avatar');
+                if (avatarEl) {
+                    if (user.avatar) {
+                        if (user.avatar.startsWith('http')) {
+                            avatarEl.src = user.avatar;
+                        } else {
+                            avatarEl.src = `http://localhost:3000/uploads/${user.avatar}`;
+                        }
+                    } else {
+                        avatarEl.src = 'https://via.placeholder.com/150';
+                    }
+                }
+            } catch (err) {
+                console.error('Lỗi tải hồ sơ:', err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+    <script src="../assets/js/nav.js"></script>
 </body>
 
 </html>

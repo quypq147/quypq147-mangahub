@@ -5,16 +5,13 @@
     <meta charset="UTF-8">
     <title>Community Forum</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="bg-gray-900 text-gray-100 font-sans">
 
-    <header class="bg-gray-800 p-4 border-b border-gray-700">
-        <div class="max-w-7xl mx-auto flex justify-between">
-            <h1 class="text-xl font-bold">Diễn đàn</h1>
-            <a href="../index.html" class="text-blue-400">Quay về trang chủ</a>
-        </div>
-    </header>
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
 
     <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
 
@@ -37,11 +34,20 @@
                     + Chủ đề mới
                 </button>
             </div>
-
+            <div id="loading" class="text-center py-20">
+                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500"></i>
+                <p class="mt-4 text-gray-400">Đang tải dữ liệu...</p>
+            </div>
+            <div id="no-data-message" class="hidden text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
+                <i class="fa-solid fa-folder-open text-6xl text-gray-600 mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-300">Hiện tại chưa có cuộc thảo luận nào?</h2>
+                <p class="text-gray-500 mt-2">Bạn muốn tạo chủ đề mới? Nhấn nút "+ Chủ đề mới" ở trên.</p>
+            </div>
             <div
                 class="bg-gray-800 p-4 rounded-lg mb-4 flex justify-between items-center hover:bg-gray-750 transition border-l-4 border-transparent hover:border-blue-500">
                 <div>
-                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Chương mới nhất của One Piece có bị trễ không?</h4>
+                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Chương mới nhất của One
+                        Piece có bị trễ không?</h4>
                     <p class="text-sm text-gray-400 mt-1">Đăng bởi <span class="text-white">LuffyFan99</span> • 2
                         giờ trước</p>
                 </div>
@@ -54,7 +60,8 @@
             <div
                 class="bg-gray-800 p-4 rounded-lg mb-4 flex justify-between items-center hover:bg-gray-750 transition border-l-4 border-transparent hover:border-blue-500">
                 <div>
-                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Truyện tranh tốt nhất cho người mới bắt đầu?
+                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Truyện tranh tốt nhất cho
+                        người mới bắt đầu?
                     </h4>
                     <p class="text-sm text-gray-400 mt-1">Đăng bởi <span class="text-white">NewbieReader</span> • 5
                         giờ trước</p>
@@ -67,6 +74,29 @@
 
         </div>
     </div>
+    <script src="../assets/js/nav.js"></script>
 </body>
+<script>
+    //Logic tai trang forum
+    document.addEventListener('DOMContentLoaded', function () {
+        const loading = document.getElementById('loading');
+        const noDataMsg = document.getElementById('no-data-message');
+        try{
+            
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                // Giả lập có dữ liệu
+                const hasData = true; // Thay đổi thành false để kiểm tra trạng thái không có dữ liệu
+                if (!hasData) {
+                    noDataMsg.classList.remove('hidden');
+                }
+            }, 1500);
+        } catch (error) {
+            loading.classList.add('hidden');
+            noDataMsg.classList.remove('hidden');
+            console.error('Lỗi khi tải dữ liệu:', error);
+        }
+    });
+</script>
 
 </html>

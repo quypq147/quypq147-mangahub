@@ -23,13 +23,19 @@ exports.getMangaById = async function(req, res) {
 // 3. WRITE (Create new manga)
 exports.createManga = async function(req, res) {
     try {
-        // Create a new instance using data sent from FE (req.body)
+        let coverImageUrl = null;
+        if (req.file) {
+            coverImageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+        }
+
+        // Create a new instance using data sent from FE (req.body) and uploaded file
         const newManga = new Manga({
             title: req.body.title,
             author: req.body.author,
             chapters: req.body.chapters,
             genres: req.body.genres,
-            rating: req.body.rating
+            rating: req.body.rating,
+            coverImage: coverImageUrl
         });
         const savedManga = await newManga.save(); // Save to DB
         res.status(201).json(savedManga);

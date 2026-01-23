@@ -34,6 +34,7 @@
             },
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -43,6 +44,8 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display">
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
     <div class="layout-container flex h-full grow flex-col">
         <!-- TopNavBar -->
         <header
@@ -149,230 +152,9 @@
                         <p class="text-sm font-medium">Completed</p>
                     </div>
                 </div>
-                <!-- Manga Card Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                    <!-- Card 1 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="One Piece manga cover art"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmNB8Egiobed-YmQxgi0qyCxZ-ZS3MfMrsBcIyVQL98l6z7UaGCSS0ntallUORtXTfic8DXzFLKKMwOuNkD139pL80nZkAaLkYA2iUXv2lGgSN1CDis3h6qyaOvdSan_csYpjJDeTePCyLr6xxxlpRyEt2nFbw_HZgu3cXPXHRQ3uCyaPjNNAGIad1xoWR9L-HqIdY687AQuefV3jvZeNWzAAWS3QNB_cEoap2Y56seklzwG4KZCPsGvH1im6Xw-Zp6VwPSU_5Qhc");'>
-                            </div>
-                            <!-- Badge -->
-                            <div
-                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
-                                New Chapter</div>
-                            <!-- Remove Icon -->
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <!-- Info Overlay -->
-                            <div class="absolute bottom-3 left-3 right-3 flex flex-col gap-1">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 1102 / 1115</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                One Piece</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Chainsaw Man manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNjAlpZLgYZEAsVA6JGmqkMxftRfN70-9oE_6Lj84ZrPJAOm1yE9fxq4lUlY7bS7hcexRQF1YXYKvP_J0i29TMvpL0AA3TjXxGfSj8BxVdnkX6tOf_izf03S73M1n2uwfxNjdNwPguSIZmwIKR3E7oE8-lCjoc_dHH48_aiCp6q1wvC54TDJSF0f3d0VONYhxCgSKZgrMzMV1FtIkrNx_qthLv-zj-IJOMGAjscvCXhMa_TkDZsvEZ2Jx8Jr0g_jVoVyWOxtsp0lI");'>
-                            </div>
-                            <div
-                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
-                                New Chapter</div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 145 / 158</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Chainsaw Man</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Oshi no Ko manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6V_aG3OzndN-cuUrj6IqjLtZNoUn9PG8C4ZSoR8wqc7mmla9KOMjNwyUIZQp_hrpV5g__C6A7hkxdsrRA9EIU8Wzz9pXMl0OaZK_v6z6xR140p5dB7w9MVggpIWflSvwFPCl3qzcsWmbFWu00H4FQ-wzYpqtPDjXvN9uZDs3QjAf7aaCLXseAbodRbWNU5KemS3LKdT0yJOi_bBMYoyRneW2PTag9azUk-827RrTGEcpEVAz2BJx2ttzh1LBXBUgffbZkDWHiUdU");'>
-                            </div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 142 / 142</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Oshi no Ko</h3>
-                            <button
-                                class="w-full bg-slate-200 dark:bg-[#232f48] hover:bg-primary/20 text-slate-900 dark:text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                Up to date
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Solo Leveling manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6wQ5qjI6vThNahbjMslOoEaD-JNtTiZbDbEqC-R_4-f5iOGRcb-OAlPY2RVH1ySouxOqjz1b3oZ494P-RcoKWvl2tlGZVLA-uq3EXX_RcpM1k3QEAJuH-i7f9-63_j2-Q8UIjrGuw7h4Xg6JFFQFq-Pn-1msAS_MJ2V5k557XwPyLxHpy5zE2GCWkw78vy1OFvzyJ9QqeWtuyZ60Ayd0Zjv1_iv0I2WmxJ5oWKfqrfswUZkDu3xwRfvL1AVyC2wdZ4r7wQHKK8LU");'>
-                            </div>
-                            <div
-                                class="absolute top-2 left-2 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
-                                Completed</div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Solo Leveling</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">restart_alt</span>
-                                Read Again
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Blue Lock manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrLAlvPGo469CtGpifqjDNl1sm3gOsUYWI_g7KXgJZ7b_sfHLr4PbTkbEWotAaOKlUeENvDuIL9JJzCsUdnyMmnFv7fD-KDKz9a0v_xjsSByGWSk0_8cwn0dHicPvA7cQcFps19IvrJqJnmdYtqcaaRWi8cNecQhvsx7nJG8ABJranD4Ipkazl9PEuqZ7Yb8Uw2CVyxJfYLpHOA_bNrwVmSwCspKpju-OorssNcAkTs1QVgsdMt0gbLPaPLqp1JDwt0wYpV9Rik2Q");'>
-                            </div>
-                            <div
-                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
-                                New Chapter</div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 248 / 252</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Blue Lock</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Kaiju No. 8 manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDS-FbUmKolbLdFak7v_Xc-Uh2fA33YSiTpIkrm_7TzPfr_ahIpIRXRwQTRPIaJC9WoopcQ4-lJ-OeWGLHjJw_PaeWp_wttIbe6wI5Zjnlty93xe-odS-cHNxoyrcULT6u_9b2Oay4FoVacQIpPGs7JasHd_FANixXCx1KZSBTzCDzZMyCP_e5Uz8Fjfv7JMk84-dmGVIt8G62vhbbNx19-N3WCvINhHBBNo8ndqzxDuUY8ojmpEDDdpJ5U739v04shICXHXHzCp5o");'>
-                            </div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 99 / 102</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Kaiju No. 8</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Spy x Family manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDblLRQK7fM5CiSYM9DHpYNJHIKXQIE_Grgoj6CVkqq5-Zh4b0gh76f5nGFrwyN1GvuAf5wNczbItYmYl-RwIG2c9RJgI9zBm9kfo3w1Lmz2MXRX5ctJpsIazHDPEBF0Los190LBtQlgZiAoYvmvE7BtvKmDi_k1Dc_dL94PXnnYASRD7TVBWxhjzLj-BQlRgMEbEhgWsR0uqvE5ficEfRXUg1heBB76JOgDECCGYnFpde2qEN7JFSqUAp94nCnxKhUl_JuoboNiqA");'>
-                            </div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 92 / 94</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Spy x Family</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="group relative flex flex-col gap-3">
-                        <div
-                            class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
-                                data-alt="Jujutsu Kaisen manga cover"
-                                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmIJbdXKNd8a0QTYED-KF3_Lz9FFFWAiS7FVmRIqL8M4TMhm5BACZJJBZB94mwGgT4KQdtFIuefZUGtk3rmsoWZXQxV9wK_uYth1fcJKqVbD_6fnmLDWRxoFUdT_JQlcYWgdejeTF6oY91ydh4XOiMglLB7d9YrSLtQMchKJ8lXvdIYNQWrKMW66c_BtTwxy6qRpDxfiUPq7q_06NcriZGadl_pPBYX7gf3OWIWwohTOcbwY0omay7l4NZ-LFHc2Vuw8JoyOYC65c");'>
-                            </div>
-                            <div
-                                class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">
-                                New Chapter</div>
-                            <button
-                                class="absolute top-2 right-2 size-8 flex items-center justify-center bg-black/40 hover:bg-red-500 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <p class="text-white text-xs font-medium opacity-80">Ch. 240 / 256</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
-                                Jujutsu Kaisen</h3>
-                            <button
-                                class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
-                                Continue Reading
-                            </button>
-                        </div>
-                    </div>
+                <!-- Manga Card Grid (rendered via JS) -->
+                <div id="bookmarks-container"
+                    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
                 </div>
                 <!-- Footer / Load More -->
                 <div class="flex justify-center mt-12 pb-12">
@@ -383,8 +165,71 @@
                     </button>
                 </div>
             </div>
-        </main>
-    </div>
+                </main>
+            </div>
+            <script>
+                async function loadBookmarks() {
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                        window.location.href = '../sign-in/index.html';
+                        return;
+                    }
+
+                    const container = document.getElementById('bookmarks-container');
+                    if (!container) return;
+
+                    try {
+                        const res = await fetch('http://localhost:3000/api/user/bookmarks', {
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            }
+                        });
+
+                        if (!res.ok) {
+                            container.innerHTML = '<p class="col-span-full text-center text-slate-400">Không tải được danh sách truyện đã lưu.</p>';
+                            return;
+                        }
+
+                        const bookmarks = await res.json();
+                        container.innerHTML = '';
+
+                        if (!bookmarks || bookmarks.length === 0) {
+                            container.innerHTML = '<p class="col-span-full text-center text-slate-400">Bạn chưa lưu truyện nào.</p>';
+                            return;
+                        }
+
+                        bookmarks.forEach(manga => {
+                            const html = `
+                                <div class="group relative flex flex-col gap-3">
+                                    <div
+                                        class="relative overflow-hidden rounded-xl aspect-[3/4] bg-slate-800 shadow-xl transition-all group-hover:ring-4 group-hover:ring-primary/40 group-hover:-translate-y-1">
+                                        <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"
+                                            style="background-image: url('${manga.coverImage || 'https://placehold.co/300x450?text=No+Cover'}');">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-slate-900 dark:text-white text-base font-bold leading-tight line-clamp-2">
+                                            ${manga.title}
+                                        </h3>
+                                        <a href="../manga/detail.html?id=${manga._id}"
+                                           class="w-full bg-primary hover:bg-blue-600 text-white text-xs font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                            <span class="material-symbols-outlined !text-[14px]">play_arrow</span>
+                                            Đọc ngay
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                            container.insertAdjacentHTML('beforeend', html);
+                        });
+                    } catch (err) {
+                        console.error('Lỗi tải bookmarks:', err);
+                        container.innerHTML = '<p class="col-span-full text-center text-slate-400">Có lỗi xảy ra khi tải dữ liệu.</p>';
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', loadBookmarks);
+            </script>
+            <script src="../assets/js/nav.js"></script>
 </body>
 
 </html>

@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MangaCloud - Manage Users</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#3b82f6",
-              "background-light": "#f8fafc",
-              "background-dark": "#0f172a",
-              "surface-light": "#ffffff",
-              "surface-dark": "#1e293b",
-            },
-            fontFamily: {
-              display: ["Inter", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-            },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>MangaCloud - Manage Users</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#3b82f6",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a",
+            "surface-light": "#ffffff",
+            "surface-dark": "#1e293b",
+          },
+          fontFamily: {
+            display: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
           },
         },
-      };
-    </script>
-    <style type="text/tailwindcss">
-      @layer base {
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    @layer base {
         body {
           font-family: "Inter", sans-serif;
         }
@@ -55,685 +53,556 @@
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
     </style>
-  </head>
-  <body
-    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex"
-  >
-    <aside
-      class="w-20 lg:w-64 border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex flex-col transition-all duration-300 shrink-0"
-    >
-      <div class="p-6 flex items-center gap-3">
-        <div
-          class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
-        >
-          <span class="material-symbols-outlined text-white text-xl"
-            >auto_stories</span
-          >
-        </div>
-        <span class="font-bold text-xl hidden lg:block tracking-tight"
-          >MangaCloud</span
-        >
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex">
+  <aside
+    class="w-20 lg:w-64 border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex flex-col transition-all duration-300 shrink-0">
+    <div class="p-6 flex items-center gap-3">
+      <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-xl">auto_stories</span>
       </div>
-      <nav class="flex-1 px-4 py-4 space-y-2">
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
-          href="#"
-        >
-          <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
-            >dashboard</span
-          >
-          <span class="font-medium hidden lg:block">Dashboard</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
-          href="#"
-        >
-          <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
-            >analytics</span
-          >
-          <span class="font-medium hidden lg:block">Analytics</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
-          href="#"
-        >
-          <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
-            >library_books</span
-          >
-          <span class="font-medium hidden lg:block">Manage Manga</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-primary bg-primary/10 rounded-xl transition-colors"
-          href="#"
-        >
-          <span class="material-symbols-outlined">group</span>
-          <span class="font-medium hidden lg:block">Manage Users</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
-          href="#"
-        >
-          <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
-            >forum</span
-          >
-          <span class="font-medium hidden lg:block">Forum Moderation</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group relative"
-          href="#"
-        >
-          <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
-            >cloud_upload</span
-          >
-          <span class="font-medium hidden lg:block">Upload Requests</span>
-          <span
-            class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden lg:block"
-            >12</span
-          >
-        </a>
-      </nav>
-      <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+      <span class="font-bold text-xl hidden lg:block tracking-tight">MangaCloud</span>
+    </div>
+    <nav class="flex-1 px-4 py-4 space-y-2">
+      <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+        href="#">
+        <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+        <span class="font-medium hidden lg:block">Dashboard</span>
+      </a>
+      <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+        href="#">
+        <span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+        <span class="font-medium hidden lg:block">Analytics</span>
+      </a>
+      <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+        href="#">
+        <span class="material-symbols-outlined group-hover:text-primary transition-colors">library_books</span>
+        <span class="font-medium hidden lg:block">Manage Manga</span>
+      </a>
+      <a class="flex items-center gap-4 px-3 py-3 text-primary bg-primary/10 rounded-xl transition-colors" href="#">
+        <span class="material-symbols-outlined">group</span>
+        <span class="font-medium hidden lg:block">Manage Users</span>
+      </a>
+      <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
+        href="#">
+        <span class="material-symbols-outlined group-hover:text-primary transition-colors">forum</span>
+        <span class="font-medium hidden lg:block">Forum Moderation</span>
+      </a>
+      <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group relative"
+        href="#">
+        <span class="material-symbols-outlined group-hover:text-primary transition-colors">cloud_upload</span>
+        <span class="font-medium hidden lg:block">Upload Requests</span>
+        <span
+          class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden lg:block">12</span>
+      </a>
+    </nav>
+    <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+      <button
+        class="flex items-center gap-4 px-3 py-3 w-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+        onclick="document.documentElement.classList.toggle('dark')">
+        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+        <span class="font-medium hidden lg:block">Appearance</span>
+      </button>
+      <div class="flex items-center gap-3 mt-4 px-3">
+        <img alt="Admin profile" class="w-10 h-10 rounded-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuACmy-xD2tdo03An3MHuZbHIMxSTSc2uBko0mn1PvVR6x796s7s_ThyCqZnQu-qfYr2GtGoxgwCOnj3hPkwqHE1dHDEi_vGuvWaNXL6mCAiusOlKdc1EUwyg3TxKy70KP7YgiqAyvhEZ7mtyHP7-Q5ntcmDcJFYK_dxsgkPv6QqxfVxdRBX31ndMwrKKBXIRZ3slkRHJ8Hu9KpBc5t6spwAu7dfsLpx_y6LQUBrb8Dmq8QYOlEsqt40Wy4OVzoQK2bGZwMFATQv1lU" />
+        <div class="hidden lg:block overflow-hidden">
+          <p class="text-sm font-semibold truncate">Admin User</p>
+          <p class="text-xs text-slate-500 truncate">Super Admin</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-10">
+    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Manage Users List
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 mt-1">
+          Review, monitor, and manage roles for all registered members.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
         <button
-          class="flex items-center gap-4 px-3 py-3 w-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
-          onclick="document.documentElement.classList.toggle('dark')"
-        >
-          <span class="material-symbols-outlined dark:hidden">dark_mode</span>
-          <span class="material-symbols-outlined hidden dark:block"
-            >light_mode</span
-          >
-          <span class="font-medium hidden lg:block">Appearance</span>
+          class="bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+          <span class="material-symbols-outlined text-lg">download</span>
+          Export List
         </button>
-        <div class="flex items-center gap-3 mt-4 px-3">
-          <img
-            alt="Admin profile"
-            class="w-10 h-10 rounded-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuACmy-xD2tdo03An3MHuZbHIMxSTSc2uBko0mn1PvVR6x796s7s_ThyCqZnQu-qfYr2GtGoxgwCOnj3hPkwqHE1dHDEi_vGuvWaNXL6mCAiusOlKdc1EUwyg3TxKy70KP7YgiqAyvhEZ7mtyHP7-Q5ntcmDcJFYK_dxsgkPv6QqxfVxdRBX31ndMwrKKBXIRZ3slkRHJ8Hu9KpBc5t6spwAu7dfsLpx_y6LQUBrb8Dmq8QYOlEsqt40Wy4OVzoQK2bGZwMFATQv1lU"
-          />
-          <div class="hidden lg:block overflow-hidden">
-            <p class="text-sm font-semibold truncate">Admin User</p>
-            <p class="text-xs text-slate-500 truncate">Super Admin</p>
+        <button
+          class="bg-primary text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-lg">person_add</span>
+          Invite User
+        </button>
+      </div>
+    </header>
+    <div
+      class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col">
+      <div
+        class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4 w-full md:w-auto">
+          <div class="relative w-full md:w-80">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
+              placeholder="Search users by name or email..." type="text" />
           </div>
+          <button
+            class="p-2 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-slate-500">filter_list</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <span class="text-sm text-slate-500 mr-2 hidden sm:inline">2 users selected</span>
+          <select
+            class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2">
+            <option selected="">Bulk Actions</option>
+            <option value="role_contributor">Set as Contributor</option>
+            <option value="role_moderator">Set as Moderator</option>
+            <option value="ban">Ban Selected</option>
+            <option value="delete">Delete Selected</option>
+          </select>
+          <button
+            class="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+            Apply
+          </button>
         </div>
       </div>
-    </aside>
-    <main class="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-10">
-      <header
-        class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
-      >
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead
+            class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase font-semibold">
+            <tr>
+              <th class="px-6 py-4 w-10">
+                <input
+                  class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
+                  type="checkbox" />
+              </th>
+              <th class="px-6 py-4">Username</th>
+              <th class="px-6 py-4">Email</th>
+              <th class="px-6 py-4">Role</th>
+              <th class="px-6 py-4">Status</th>
+              <th class="px-6 py-4">Last Active</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+              <td class="px-6 py-4">
+                <input
+                  class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
+                  type="checkbox" />
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <img alt="User avatar" class="w-8 h-8 rounded-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEdpn0geJlh3zfQ7SCqLjoTkh_iyO6aRJog9UQa38Pp4dTzmaDEtREuET9JN1jAo1aq35DcXCf1mY39UvUpc874dw0TTAX8DTXSuZAa5FvGi6C0pXWzcvAfHqX3gKlI07-p0ye2FM_9LFV65HtFRMCPI8BUS8atblO570OTyI_Hwf4tBUgE664swFxzIY74DvNi4vthQ_-t4WERqaHTLJQk16MfoMZWDQ0k-QnFM-Od9053wLGsk59LL4ks83Cd6PVlIQbAPDe69c" />
+                  <span class="font-medium text-slate-900 dark:text-white">LuffyFan99</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm">
+                monkey.d@gomugomu.com
+              </td>
+              <td class="px-6 py-4">
+                <div class="relative inline-block">
+                  <select
+                    class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0">
+                    <option value="user">User</option>
+                    <option selected="" value="contributor">
+                      Contributor
+                    </option>
+                    <option value="moderator">Moderator</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none">expand_more</span>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Active
+                </span>
+              </td>
+              <td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap">
+                2 hours ago
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+                    title="View Profile">
+                    <span class="material-symbols-outlined text-xl">visibility</span>
+                  </button>
+                  <button
+                    class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
+                    title="Edit Role">
+                    <span class="material-symbols-outlined text-xl">manage_accounts</span>
+                  </button>
+                  <button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                    title="Ban User">
+                    <span class="material-symbols-outlined text-xl">block</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+              <td class="px-6 py-4">
+                <input checked=""
+                  class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
+                  type="checkbox" />
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-xs font-bold text-purple-600">
+                    NB
+                  </div>
+                  <span class="font-medium text-slate-900 dark:text-white">NewbieReader</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm">
+                reader_01@email.com
+              </td>
+              <td class="px-6 py-4">
+                <div class="relative inline-block">
+                  <select
+                    class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0">
+                    <option selected="" value="user">User</option>
+                    <option value="contributor">Contributor</option>
+                    <option value="moderator">Moderator</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none">expand_more</span>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Active
+                </span>
+              </td>
+              <td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap">
+                14 mins ago
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+                    title="View Profile">
+                    <span class="material-symbols-outlined text-xl">visibility</span>
+                  </button>
+                  <button
+                    class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
+                    title="Edit Role">
+                    <span class="material-symbols-outlined text-xl">manage_accounts</span>
+                  </button>
+                  <button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                    title="Ban User">
+                    <span class="material-symbols-outlined text-xl">block</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+              <td class="px-6 py-4">
+                <input checked=""
+                  class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
+                  type="checkbox" />
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3 opacity-60">
+                  <img alt="User avatar" class="w-8 h-8 rounded-full object-cover grayscale"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNvkW8YWWc8fFzZazO0PyQCRQqq35gNIgFbnbVnOf4B21xYZHLBCYDiYM1M8h4xOuzzgpt95YwDhZWVfTvStSXarPxe_g8NYeXOiuDdeoEcPt--AOfCaZsTUp5OHFcXzRYENCKZNEXIOEMWe7HEL-ey1Al-JYI1QgytVzX8P0jgf717M7MLLJc2cz8EAtYJcHTz-9W9T3CxH-YlQn6v4-dtbIA9zpLVqPXjKDTsQVmlrTWbrjt4__zTEw-780hGe_Q-_vD00LmrOI" />
+                  <span class="font-medium text-slate-900 dark:text-white">ToxicGamer77</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm">
+                spammer@trashmail.com
+              </td>
+              <td class="px-6 py-4">
+                <div class="relative inline-block">
+                  <select
+                    class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0 text-slate-400">
+                    <option selected="" value="user">User</option>
+                    <option value="contributor">Contributor</option>
+                    <option value="moderator">Moderator</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none">expand_more</span>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                  Banned
+                </span>
+              </td>
+              <td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap">
+                3 days ago
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+                    title="View Profile">
+                    <span class="material-symbols-outlined text-xl">visibility</span>
+                  </button>
+                  <button
+                    class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
+                    title="Edit Role">
+                    <span class="material-symbols-outlined text-xl">manage_accounts</span>
+                  </button>
+                  <button class="p-2 text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-all"
+                    title="Unban User">
+                    <span class="material-symbols-outlined text-xl">check_circle</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+              <td class="px-6 py-4">
+                <input
+                  class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
+                  type="checkbox" />
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <img alt="User avatar" class="w-8 h-8 rounded-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3cnqGQACA5LNDf7vdQfVl0GtsfPCysrYiWb2rdbsAxiPhvVgk1FMuvF2PdGGbK6ZGSOA0eCj8gMn8qQV-KgAk4JWk2s5ePvw2nL6PxWDJkeWhDpUU-OBxj4TbAKuftAma6tNo8K7pXfX8EpyMd-l6GRXzwCDtAhkJjlM6tD5d7iE686Td0nTOkCtDtCdExpGoBkpI8xpGgKvOk1ic4NChTOeqTjObBGcFjkujzdTbIM23x5t_g-2TnYCzuyQc4xohBiSUP3EFlSU" />
+                  <span class="font-medium text-slate-900 dark:text-white">Admin_Sarah</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm">
+                sarah.admin@mangacloud.com
+              </td>
+              <td class="px-6 py-4">
+                <div class="relative inline-block">
+                  <select
+                    class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0">
+                    <option value="user">User</option>
+                    <option value="contributor">Contributor</option>
+                    <option value="moderator">Moderator</option>
+                    <option selected="" value="admin">Admin</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none">expand_more</span>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Active
+                </span>
+              </td>
+              <td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap">
+                Just now
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+                    title="View Profile">
+                    <span class="material-symbols-outlined text-xl">visibility</span>
+                  </button>
+                  <button
+                    class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
+                    title="Edit Role">
+                    <span class="material-symbols-outlined text-xl">manage_accounts</span>
+                  </button>
+                  <button class="p-2 text-slate-300 cursor-not-allowed" disabled="" title="Cannot Ban Admin">
+                    <span class="material-symbols-outlined text-xl">block</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-sm text-slate-500">Showing 1 to 4 of 42,892 users</span>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50 transition-colors"
+            disabled="">
+            <span class="material-symbols-outlined text-lg">chevron_left</span>
+          </button>
+          <button class="w-8 h-8 rounded-lg bg-primary text-white font-bold text-xs">
+            1
+          </button>
+          <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs">
+            2
+          </button>
+          <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs">
+            3
+          </button>
+          <span class="px-2 text-slate-400">...</span>
+          <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs">
+            1072
+          </button>
+          <button
+            class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-lg">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+      <div
+        class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">
+          Total Users
+        </h3>
+        <div class="flex items-center justify-between">
+          <span class="text-2xl font-bold">42,892</span>
+          <span class="text-emerald-500 text-xs font-medium">+2.4k this month</span>
+        </div>
+      </div>
+      <div
+        class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">
+          Active Now
+        </h3>
+        <div class="flex items-center justify-between">
+          <span class="text-2xl font-bold">1,429</span>
+          <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+        </div>
+      </div>
+      <div
+        class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">
+          Banned Today
+        </h3>
+        <div class="flex items-center justify-between">
+          <span class="text-2xl font-bold">12</span>
+          <span class="text-red-500 text-xs font-medium">Spam wave</span>
+        </div>
+      </div>
+      <div
+        class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">
+          Pending Staff
+        </h3>
+        <div class="flex items-center justify-between">
+          <span class="text-2xl font-bold">8</span>
+          <span class="text-amber-500 text-xs font-medium">Review needed</span>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="mt-10 p-6 bg-slate-900 dark:bg-slate-800/50 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4 text-center md:text-left">
+        <div class="p-2 bg-primary/20 rounded-lg text-primary">
+          <span class="material-symbols-outlined">security</span>
+        </div>
         <div>
-          <h1
-            class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white"
-          >
-            Manage Users List
-          </h1>
-          <p class="text-slate-500 dark:text-slate-400 mt-1">
-            Review, monitor, and manage roles for all registered members.
+          <h4 class="font-bold">Privacy &amp; Security Audit</h4>
+          <p class="text-sm text-slate-400">
+            Monthly user data verification is scheduled for Friday. Please
+            ensure all moderation logs are up to date.
           </p>
         </div>
-        <div class="flex items-center gap-3">
-          <button
-            class="bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-          >
-            <span class="material-symbols-outlined text-lg">download</span>
-            Export List
-          </button>
-          <button
-            class="bg-primary text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
-          >
-            <span class="material-symbols-outlined text-lg">person_add</span>
-            Invite User
-          </button>
-        </div>
-      </header>
-      <div
-        class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col"
-      >
-        <div
-          class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4"
-        >
-          <div class="flex items-center gap-4 w-full md:w-auto">
-            <div class="relative w-full md:w-80">
-              <span
-                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-                >search</span
-              >
-              <input
-                class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-sm"
-                placeholder="Search users by name or email..."
-                type="text"
-              />
-            </div>
-            <button
-              class="p-2 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-            >
-              <span class="material-symbols-outlined text-slate-500"
-                >filter_list</span
-              >
-            </button>
-          </div>
-          <div class="flex items-center gap-2 w-full md:w-auto">
-            <span class="text-sm text-slate-500 mr-2 hidden sm:inline"
-              >2 users selected</span
-            >
-            <select
-              class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2"
-            >
-              <option selected="">Bulk Actions</option>
-              <option value="role_contributor">Set as Contributor</option>
-              <option value="role_moderator">Set as Moderator</option>
-              <option value="ban">Ban Selected</option>
-              <option value="delete">Delete Selected</option>
-            </select>
-            <button
-              class="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity"
-            >
-              Apply
-            </button>
-          </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left">
-            <thead
-              class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase font-semibold"
-            >
-              <tr>
-                <th class="px-6 py-4 w-10">
-                  <input
-                    class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
-                    type="checkbox"
-                  />
-                </th>
-                <th class="px-6 py-4">Username</th>
-                <th class="px-6 py-4">Email</th>
-                <th class="px-6 py-4">Role</th>
-                <th class="px-6 py-4">Status</th>
-                <th class="px-6 py-4">Last Active</th>
-                <th class="px-6 py-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-              <tr
-                class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group"
-              >
-                <td class="px-6 py-4">
-                  <input
-                    class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
-                    type="checkbox"
-                  />
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-3">
-                    <img
-                      alt="User avatar"
-                      class="w-8 h-8 rounded-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEdpn0geJlh3zfQ7SCqLjoTkh_iyO6aRJog9UQa38Pp4dTzmaDEtREuET9JN1jAo1aq35DcXCf1mY39UvUpc874dw0TTAX8DTXSuZAa5FvGi6C0pXWzcvAfHqX3gKlI07-p0ye2FM_9LFV65HtFRMCPI8BUS8atblO570OTyI_Hwf4tBUgE664swFxzIY74DvNi4vthQ_-t4WERqaHTLJQk16MfoMZWDQ0k-QnFM-Od9053wLGsk59LL4ks83Cd6PVlIQbAPDe69c"
-                    />
-                    <span class="font-medium text-slate-900 dark:text-white"
-                      >LuffyFan99</span
-                    >
-                  </div>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm"
-                >
-                  monkey.d@gomugomu.com
-                </td>
-                <td class="px-6 py-4">
-                  <div class="relative inline-block">
-                    <select
-                      class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0"
-                    >
-                      <option value="user">User</option>
-                      <option selected="" value="contributor">
-                        Contributor
-                      </option>
-                      <option value="moderator">Moderator</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                    <span
-                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
-                      >expand_more</span
-                    >
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase"
-                  >
-                    <span
-                      class="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                    ></span>
-                    Active
-                  </span>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap"
-                >
-                  2 hours ago
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <div class="flex items-center justify-end gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-                      title="View Profile"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >visibility</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
-                      title="Edit Role"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >manage_accounts</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
-                      title="Ban User"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >block</span
-                      >
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group"
-              >
-                <td class="px-6 py-4">
-                  <input
-                    checked=""
-                    class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
-                    type="checkbox"
-                  />
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-xs font-bold text-purple-600"
-                    >
-                      NB
+      </div>
+      <button class="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity shrink-0">
+        View Audit Logs
+      </button>
+    </footer>
+  </main>
+</body>
+<script>
+  const API_URL = "http://localhost:3000/api/users"; // Cập nhật port nếu khác
+  const token = localStorage.getItem("token"); // Lấy token lúc đăng nhập
+
+  // 1. Hàm kiểm tra quyền và tải dữ liệu
+  async function initAdminPage() {
+    if (!token) {
+      window.location.href = "/frontend/sign-in/index.html";
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/all`, {
+        headers: { "Authorization": token }
+      });
+
+      if (res.status === 403 || res.status === 401) {
+        alert("Bạn không có quyền truy cập!");
+        window.location.href = "/frontend/index.html";
+        return;
+      }
+
+      const users = await res.json();
+      renderUsersTable(users);
+    } catch (error) {
+      console.error("Lỗi tải dữ liệu:", error);
+    }
+  }
+
+  // 2. Hàm hiển thị dữ liệu ra bảng HTML
+  function renderUsersTable(users) {
+    const tableBody = document.querySelector("#users-table-body"); // Cần đặt ID cho thẻ <tbody> trong HTML
+    tableBody.innerHTML = "";
+
+    users.forEach(user => {
+      const row = document.createElement("tr");
+      row.className = "border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors";
+
+      row.innerHTML = `
+                <td class="p-4 align-middle">
+                    <div class="flex items-center gap-3">
+                        <div class="font-semibold text-slate-700 dark:text-slate-200">${user.username}</div>
                     </div>
-                    <span class="font-medium text-slate-900 dark:text-white"
-                      >NewbieReader</span
-                    >
-                  </div>
                 </td>
-                <td
-                  class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm"
-                >
-                  reader_01@email.com
+                <td class="p-4 align-middle">
+                    <span class="text-sm text-slate-500 dark:text-slate-400">${user.email}</span>
                 </td>
-                <td class="px-6 py-4">
-                  <div class="relative inline-block">
-                    <select
-                      class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0"
-                    >
-                      <option selected="" value="user">User</option>
-                      <option value="contributor">Contributor</option>
-                      <option value="moderator">Moderator</option>
-                      <option value="admin">Admin</option>
+                <td class="p-4 align-middle">
+                    <select onchange="changeUserRole('${user._id}', this.value)" 
+                            class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm rounded-lg block w-full p-2.5">
+                        <option value="user" ${user.role === 'user' ? 'selected' : ''}>Member</option>
+                        <option value="uploader" ${user.role === 'uploader' ? 'selected' : ''}>Uploader</option>
+                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
                     </select>
-                    <span
-                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
-                      >expand_more</span
-                    >
-                  </div>
                 </td>
-                <td class="px-6 py-4">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase"
-                  >
-                    <span
-                      class="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                    ></span>
-                    Active
-                  </span>
+                <td class="p-4 align-middle text-right">
+                    <button class="text-red-500 hover:text-red-700 font-medium text-sm">Xóa</button>
                 </td>
-                <td
-                  class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap"
-                >
-                  14 mins ago
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <div class="flex items-center justify-end gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-                      title="View Profile"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >visibility</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
-                      title="Edit Role"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >manage_accounts</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
-                      title="Ban User"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >block</span
-                      >
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group"
-              >
-                <td class="px-6 py-4">
-                  <input
-                    checked=""
-                    class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
-                    type="checkbox"
-                  />
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-3 opacity-60">
-                    <img
-                      alt="User avatar"
-                      class="w-8 h-8 rounded-full object-cover grayscale"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNvkW8YWWc8fFzZazO0PyQCRQqq35gNIgFbnbVnOf4B21xYZHLBCYDiYM1M8h4xOuzzgpt95YwDhZWVfTvStSXarPxe_g8NYeXOiuDdeoEcPt--AOfCaZsTUp5OHFcXzRYENCKZNEXIOEMWe7HEL-ey1Al-JYI1QgytVzX8P0jgf717M7MLLJc2cz8EAtYJcHTz-9W9T3CxH-YlQn6v4-dtbIA9zpLVqPXjKDTsQVmlrTWbrjt4__zTEw-780hGe_Q-_vD00LmrOI"
-                    />
-                    <span class="font-medium text-slate-900 dark:text-white"
-                      >ToxicGamer77</span
-                    >
-                  </div>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm"
-                >
-                  spammer@trashmail.com
-                </td>
-                <td class="px-6 py-4">
-                  <div class="relative inline-block">
-                    <select
-                      class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0 text-slate-400"
-                    >
-                      <option selected="" value="user">User</option>
-                      <option value="contributor">Contributor</option>
-                      <option value="moderator">Moderator</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                    <span
-                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
-                      >expand_more</span
-                    >
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 uppercase"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    Banned
-                  </span>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap"
-                >
-                  3 days ago
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <div class="flex items-center justify-end gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-                      title="View Profile"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >visibility</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
-                      title="Edit Role"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >manage_accounts</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-all"
-                      title="Unban User"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >check_circle</span
-                      >
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group"
-              >
-                <td class="px-6 py-4">
-                  <input
-                    class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary"
-                    type="checkbox"
-                  />
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-3">
-                    <img
-                      alt="User avatar"
-                      class="w-8 h-8 rounded-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3cnqGQACA5LNDf7vdQfVl0GtsfPCysrYiWb2rdbsAxiPhvVgk1FMuvF2PdGGbK6ZGSOA0eCj8gMn8qQV-KgAk4JWk2s5ePvw2nL6PxWDJkeWhDpUU-OBxj4TbAKuftAma6tNo8K7pXfX8EpyMd-l6GRXzwCDtAhkJjlM6tD5d7iE686Td0nTOkCtDtCdExpGoBkpI8xpGgKvOk1ic4NChTOeqTjObBGcFjkujzdTbIM23x5t_g-2TnYCzuyQc4xohBiSUP3EFlSU"
-                    />
-                    <span class="font-medium text-slate-900 dark:text-white"
-                      >Admin_Sarah</span
-                    >
-                  </div>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-600 dark:text-slate-400 text-sm"
-                >
-                  sarah.admin@mangacloud.com
-                </td>
-                <td class="px-6 py-4">
-                  <div class="relative inline-block">
-                    <select
-                      class="appearance-none bg-slate-100 dark:bg-slate-800 border-none text-xs font-bold rounded-full py-1.5 pl-3 pr-8 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:ring-0"
-                    >
-                      <option value="user">User</option>
-                      <option value="contributor">Contributor</option>
-                      <option value="moderator">Moderator</option>
-                      <option selected="" value="admin">Admin</option>
-                    </select>
-                    <span
-                      class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
-                      >expand_more</span
-                    >
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase"
-                  >
-                    <span
-                      class="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                    ></span>
-                    Active
-                  </span>
-                </td>
-                <td
-                  class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm whitespace-nowrap"
-                >
-                  Just now
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <div class="flex items-center justify-end gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-                      title="View Profile"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >visibility</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all"
-                      title="Edit Role"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >manage_accounts</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-300 cursor-not-allowed"
-                      disabled=""
-                      title="Cannot Ban Admin"
-                    >
-                      <span class="material-symbols-outlined text-xl"
-                        >block</span
-                      >
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div
-          class="p-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between"
-        >
-          <span class="text-sm text-slate-500"
-            >Showing 1 to 4 of 42,892 users</span
-          >
-          <div class="flex items-center gap-2">
-            <button
-              class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50 transition-colors"
-              disabled=""
-            >
-              <span class="material-symbols-outlined text-lg"
-                >chevron_left</span
-              >
-            </button>
-            <button
-              class="w-8 h-8 rounded-lg bg-primary text-white font-bold text-xs"
-            >
-              1
-            </button>
-            <button
-              class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs"
-            >
-              2
-            </button>
-            <button
-              class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs"
-            >
-              3
-            </button>
-            <span class="px-2 text-slate-400">...</span>
-            <button
-              class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-xs"
-            >
-              1072
-            </button>
-            <button
-              class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-            >
-              <span class="material-symbols-outlined text-lg"
-                >chevron_right</span
-              >
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
-        <div
-          class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
-        >
-          <h3
-            class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-          >
-            Total Users
-          </h3>
-          <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold">42,892</span>
-            <span class="text-emerald-500 text-xs font-medium"
-              >+2.4k this month</span
-            >
-          </div>
-        </div>
-        <div
-          class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
-        >
-          <h3
-            class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-          >
-            Active Now
-          </h3>
-          <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold">1,429</span>
-            <div
-              class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-            ></div>
-          </div>
-        </div>
-        <div
-          class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
-        >
-          <h3
-            class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-          >
-            Banned Today
-          </h3>
-          <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold">12</span>
-            <span class="text-red-500 text-xs font-medium">Spam wave</span>
-          </div>
-        </div>
-        <div
-          class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
-        >
-          <h3
-            class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-          >
-            Pending Staff
-          </h3>
-          <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold">8</span>
-            <span class="text-amber-500 text-xs font-medium"
-              >Review needed</span
-            >
-          </div>
-        </div>
-      </div>
-      <footer
-        class="mt-10 p-6 bg-slate-900 dark:bg-slate-800/50 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-4"
-      >
-        <div class="flex items-center gap-4 text-center md:text-left">
-          <div class="p-2 bg-primary/20 rounded-lg text-primary">
-            <span class="material-symbols-outlined">security</span>
-          </div>
-          <div>
-            <h4 class="font-bold">Privacy &amp; Security Audit</h4>
-            <p class="text-sm text-slate-400">
-              Monthly user data verification is scheduled for Friday. Please
-              ensure all moderation logs are up to date.
-            </p>
-          </div>
-        </div>
-        <button
-          class="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity shrink-0"
-        >
-          View Audit Logs
-        </button>
-      </footer>
-    </main>
-  </body>
+            `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  // 3. Hàm xử lý đổi quyền (Set Permissions)
+  async function changeUserRole(userId, newRole) {
+    if (!confirm(`Bạn có chắc muốn đổi quyền thành ${newRole}?`)) return;
+
+    try {
+      const res = await fetch(`${API_URL}/role`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+        body: JSON.stringify({ userId, role: newRole })
+      });
+
+      if (res.ok) {
+        alert("Cập nhật quyền thành công!");
+      } else {
+        alert("Lỗi khi cập nhật!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Chạy hàm khi trang tải xong
+  document.addEventListener("DOMContentLoaded", initAdminPage);
+</script>
+
 </html>

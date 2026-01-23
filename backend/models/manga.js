@@ -5,7 +5,7 @@ const MangaSchema = mongoose.Schema({
     author: { type: String, required: true },
     description: { type: String },
     coverImage: { type: String }, 
-    chapters: { type: Number, required: true },
+    chapters: { type: Number },
     genres: [String],
     publishedDate: { type: Date },
     rating: { type: Number, min: 0, max: 5 },

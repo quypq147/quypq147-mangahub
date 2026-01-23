@@ -32,6 +32,7 @@
             },
         };
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: "Inter", sans-serif
@@ -46,32 +47,8 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
-    <nav
-        class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-8">
-                    <a class="flex items-center gap-2" href="#">
-                        <span class="text-2xl font-bold tracking-tight text-blue-500">Manga<span
-                                class="text-slate-900 dark:text-white">World</span></span>
-                    </a>
-                    <div class="hidden md:flex space-x-4">
-                        <a class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                            href="../index.html">Trang chủ</a>
-                        <a class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                            href="../forum.html">Diễn đàn</a>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
-                        <span class="material-icons text-lg">language</span>
-                        EN
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
     <main class="flex-grow manga-bg flex items-center justify-center p-6">
         <div class="w-full max-w-md">
             <div
@@ -215,6 +192,7 @@
             }
         });
     </script>
+    <script src="../assets/js/nav.js"></script>
 </body>
 
 </html>

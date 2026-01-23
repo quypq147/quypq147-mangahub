@@ -16,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/manga", mangaRoutes);
 app.use("/api/auth", authRoutes);
+app.use('/api/chapters', require('./routes/chapterRoutes'));
+
 
 // Static files
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
