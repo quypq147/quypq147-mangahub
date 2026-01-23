@@ -22,12 +22,12 @@ exports.getChapterContent = async (req, res) => {
         res.status(200).json({
             mangaTitle: manga ? manga.title : "Unknown Manga",
             chapterTitle: chapter.title,
-            pages: chapter.pages // This is the array of image URLs
+            pages: chapter.pages
         });
 
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).json({ error: 'Loi may chu' });
     }
 };
 exports.createChapter = async (req, res) => {
@@ -57,7 +57,7 @@ exports.createChapter = async (req, res) => {
         // Update the Manga to know it has a new chapter (Optional but good practice)
         // await Manga.findByIdAndUpdate(mangaId, { $push: { chapters: newChapter._id } });
 
-        res.status(201).json({ message: "Chapter uploaded successfully!", chapter: newChapter });
+        res.status(201).json({ message: "Chuong da duoc upload!", chapter: newChapter });
 
     } catch (err) {
         console.error(err);

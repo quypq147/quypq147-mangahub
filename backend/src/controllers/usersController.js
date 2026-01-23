@@ -1,26 +1,27 @@
-const User = require('../../models/user');
-const Manga = require('../../models/manga');
+const User = require("../../models/user");
 
-// Lấy thông tin cá nhân (Profile)
-exports.getProfile = async (req, res) => {
-    try {
-        // req.user.id lấy từ middleware xác thực (JWT)
-        const user = await User.findById(req.user.id).select('-password'); 
-        if (!user) return res.status(404).json({ error: "User not found" });
-        res.json(user);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+// Lấy danh sách toàn bộ user (cho trang Manage Users)
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password"); // Không trả về mật khẩu
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Lấy danh sách truyện đã lưu (Bookmarks)
-exports.getBookmarks = async (req, res) => {
-    try {
-        // populate('bookmarks') sẽ tự động lấy chi tiết truyện từ mảng ID
-        const user = await User.findById(req.user.id).populate('bookmarks');
-        if (!user) return res.status(404).json({ error: "User not found" });
-        res.json(user.bookmarks);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+// Cập nhật quyền hạn (Role) cho User
+exports.updateUserRole = async (req, res) => {
+  try {
+    const { userId, role } = req.body; // role: 'admin', 'uploader', 'user'
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { role: role },
+      { new: true }
+    ).select("-password");
+    
+    res.status(200).json({ message: "Cập nhật quyền thành công", user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
