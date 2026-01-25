@@ -57,17 +57,17 @@
             </div>
             <a class="inline-flex items-center text-primary hover:underline text-sm font-medium" href="../index.html">
                 <span class="material-symbols-outlined text-[18px] mr-1">arrow_back</span>
-                Back to Dashboard
+                Quay lại trang chính
             </a>
         </div>
         <div class="flex border-b border-slate-200 dark:border-slate-800 mb-6">
             <button id="btn-tab-series" onclick="switchTab('series')"
                 class="px-6 py-3 text-sm font-semibold text-slate-500 hover:text-primary transition-colors border-b-2 border-transparent">
-                Create Series
+                Tạo manga serie mới
             </button>
             <button id="btn-tab-chapter" onclick="switchTab('chapter')"
                 class="px-6 py-3 text-sm font-semibold text-primary border-b-2 border-primary transition-colors">
-                Upload Chapter
+                Upload chương mới
             </button>
         </div>
 
@@ -77,18 +77,18 @@
                 <h2 class="text-xl font-bold mb-4">New Series Details</h2>
                 <form id="create-manga-form" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1">Manga Title</label>
+                        <label class="block text-sm font-medium mb-1">Tiêu đề manga</label>
                         <input type="text" name="title" required
                             class="w-full rounded-md border-slate-300 dark:bg-slate-900" placeholder="e.g. One Piece">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">Author</label>
+                        <label class="block text-sm font-medium mb-1">Tác giả</label>
                         <input type="text" name="author" required
                             class="w-full rounded-md border-slate-300 dark:bg-slate-900"
                             placeholder="e.g. Eiichiro Oda">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">Description</label>
+                        <label class="block text-sm font-medium mb-1">Mô tả</label>
                         <input type="text" name="description" required
                             class="w-full rounded-md border-slate-300 dark:bg-slate-900">
                     </div>
@@ -100,7 +100,7 @@
                     </div>
                     <button type="submit"
                         class="px-6 py-2 bg-primary text-white rounded-lg font-bold hover:bg-blue-600">
-                        Create Series
+                        Tạo manga serie mới
                     </button>
                 </form>
             </div>
@@ -115,25 +115,25 @@
                             <label class="block text-sm font-medium mb-2">Manga Series</label>
                             <select id="manga-select" name="mangaId"
                                 class="block w-full rounded-md border-slate-300 dark:bg-[#111827]">
-                                <option value="">Loading series...</option>
+                                <option value="">Đang tải manga...</option>
                             </select>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium mb-2">Chapter Number</label>
+                                <label class="block text-sm font-medium mb-2">Số chương</label>
                                 <input type="number" name="chapterNumber" required
                                     class="block w-full rounded-md border-slate-300 dark:bg-[#111827]">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Title (Optional)</label>
+                                <label class="block text-sm font-medium mb-2">Tiêu đề (Tùy chọn)</label>
                                 <input type="text" name="title"
                                     class="block w-full rounded-md border-slate-300 dark:bg-[#111827]">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Chapter Pages</label>
+                            <label class="block text-sm font-medium mb-2">Trang chương</label>
                             <div
                                 class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-slate-50 dark:bg-[#111827]/50">
                                 <input type="file" name="pages" multiple accept="image/*" class="w-full" required />
@@ -143,7 +143,7 @@
                         <div class="flex justify-end pt-4">
                             <button type="submit"
                                 class="px-8 py-2.5 bg-primary text-white font-bold rounded-lg shadow-lg hover:bg-blue-600">
-                                Submit Chapter
+                                Tạo chương mới
                             </button>
                         </div>
                     </form>

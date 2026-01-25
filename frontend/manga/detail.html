@@ -45,7 +45,7 @@
             <div class="lg:col-span-9 flex flex-col justify-between">
                 <div>
                     <div class="flex flex-wrap items-center gap-2 mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                        <a class="hover:text-primary" href="../index.html">Home</a>
+                        <a class="hover:text-primary" href="../index.html">Trang chủ</a>
                         <span class="material-icons text-[10px]">chevron_right</span>
                         <a class="hover:text-primary" href="index.html">Manga</a>
                         <span class="material-icons text-[10px]">chevron_right</span>
@@ -56,11 +56,11 @@
 
                     <div class="flex flex-wrap items-center gap-6 mb-6">
                         <div class="flex items-center space-x-2">
-                            <span class="text-slate-500 text-sm">Author:</span>
+                            <span class="text-slate-500 text-sm">Tác giả:</span>
                             <span id="manga-author" class="font-semibold text-primary">...</span>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <span class="text-slate-500 text-sm">Status:</span>
+                            <span class="text-slate-500 text-sm">Trạng thái:</span>
                             <span id="manga-status" class="px-2 py-0.5 rounded text-xs font-bold bg-green-900/30 text-green-400 uppercase tracking-tighter">Ongoing</span>
                         </div>
                         <div class="flex items-center space-x-1 text-amber-500">
@@ -75,13 +75,13 @@
                     <div class="flex flex-wrap gap-4 mb-8">
                         <button class="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center space-x-2 shadow-lg shadow-primary/20">
                             <span class="material-icons">play_arrow</span>
-                            <span>Read Now</span>
+                            <span>Đọc ngay</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="prose dark:prose-invert max-w-none">
-                    <h3 class="text-xl font-bold mb-2">Summary</h3>
+                    <h3 class="text-xl font-bold mb-2">Tóm tắt</h3>
                     <p id="manga-desc" class="text-slate-400 leading-relaxed">
                         No description available.
                     </p>
@@ -93,13 +93,13 @@
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
                     <div class="w-1.5 h-8 bg-primary rounded-full"></div>
-                    <h2 class="text-2xl font-bold">Chapters</h2>
+                    <h2 class="text-2xl font-bold">Chương</h2>
                 </div>
             </div>
             
             <div class="overflow-y-auto max-h-[600px] custom-scrollbar pr-2">
                 <div id="chapter-list" class="grid grid-cols-1 gap-1">
-                    <p class="text-slate-500 text-center py-4">Loading chapters...</p>
+                    <p class="text-slate-500 text-center py-4">Đang tải chương...</p>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
             const mangaId = urlParams.get('id');
 
             if (!mangaId) {
-                alert('No Manga ID provided!');
+                alert('Không có ID Manga được cung cấp!');
                 window.location.href = 'index.html';
                 return;
             }
@@ -120,9 +120,11 @@
             try {
                 // 2. Fetch data from API
                 const response = await fetch(`http://localhost:3000/api/manga/${mangaId}`);
-                if (!response.ok) throw new Error('Manga not found');
+                if (!response.ok) throw new Error('Không tìm thấy manga');
                 
                 const manga = await response.json();
+                if (!manga) throw new Error('Dữ liệu manga trống');
+                
 
                 // 3. Update Page Title
                 document.title = `${manga.title} - MangaWorld`;
@@ -175,13 +177,13 @@
                         chapterContainer.innerHTML += chapterHtml;
                     }
                 } else {
-                    chapterContainer.innerHTML = '<p class="text-slate-500">No chapters uploaded yet.</p>';
+                    chapterContainer.innerHTML = '<p class="text-slate-500">Chuong trinh chua duoc tai len.</p>';
                 }
 
             } catch (error) {
                 console.error(error);
-                document.getElementById('manga-title').textContent = 'Error loading manga';
-                document.getElementById('manga-desc').textContent = 'Could not fetch details from server.';
+                document.getElementById('manga-title').textContent = 'Lỗi khi tải manga';
+                document.getElementById('manga-desc').textContent = 'Không thể lấy chi tiết từ máy chủ.';
             }
         });
     </script>
