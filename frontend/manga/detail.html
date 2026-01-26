@@ -119,7 +119,7 @@
 
             try {
                 // 2. Fetch data from API
-                const response = await fetch(`http://localhost:3000/api/manga/${mangaId}`);
+                const response = await fetch(`${API_URL}/manga/${mangaId}`);
                 if (!response.ok) throw new Error('Không tìm thấy manga');
                 
                 const manga = await response.json();
@@ -151,33 +151,43 @@
                     });
                 }
 
-                // 5. Generate Chapter List
-                // Since your model only has a number 'chapters: 50', we generate a list from 1 to 50.
+                // 5. Generate Chapter List (Lấy từ API thật)
                 const chapterContainer = document.getElementById('chapter-list');
-                chapterContainer.innerHTML = ''; // Clear loading text
+                chapterContainer.innerHTML = '<p class="text-slate-500 text-center">Đang tải danh sách chương...</p>';
                 
-                const totalChapters = manga.chapters || 0;
-                
-                if (totalChapters > 0) {
-                    for (let i = totalChapters; i >= 1; i--) {
-                        // Link to reader.html with params
-                        const chapterHtml = `
-                            <a href="reader.html?mangaId=${mangaId}&chapter=${i}" class="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700">
-                                <div class="flex items-center space-x-4">
-                                    <span class="text-slate-400 font-medium w-12 text-sm">${i}</span>
-                                    <div class="flex flex-col">
-                                        <span class="font-bold group-hover:text-primary transition-colors">Chapter ${i}</span>
+                try {
+                    // Gọi API mới tạo để lấy danh sách chương
+                    const chapRes = await fetch(`${API_URL}/chapters/manga/${mangaId}`);
+                    const chapters = await chapRes.json();
+
+                    chapterContainer.innerHTML = ''; // Xóa thông báo loading
+
+                    if (chapters && chapters.length > 0) {
+                        chapters.forEach(chapter => {
+                            const chapterHtml = `
+                                <a href="reader.html?mangaId=${mangaId}&chapter=${chapter.chapterNumber}" class="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-700">
+                                    <div class="flex items-center space-x-4">
+                                        <span class="text-slate-400 font-medium w-12 text-sm">${chapter.chapterNumber}</span>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold group-hover:text-primary transition-colors">
+                                                ${chapter.title ? chapter.title : `Chapter ${chapter.chapterNumber}`}
+                                            </span>
+                                            <span class="text-xs text-slate-500">${new Date(chapter.releaseDate).toLocaleDateString()}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center space-x-6">
-                                    <span class="material-icons text-slate-300 group-hover:text-primary transition-colors">play_circle</span>
-                                </div>
-                            </a>
-                        `;
-                        chapterContainer.innerHTML += chapterHtml;
+                                    <div class="flex items-center space-x-6">
+                                        <span class="material-icons text-slate-300 group-hover:text-primary transition-colors">play_circle</span>
+                                    </div>
+                                </a>
+                            `;
+                            chapterContainer.innerHTML += chapterHtml;
+                        });
+                    } else {
+                        chapterContainer.innerHTML = '<p class="text-slate-500 text-center py-4">Chưa có chương nào được tải lên.</p>';
                     }
-                } else {
-                    chapterContainer.innerHTML = '<p class="text-slate-500">Chuong trinh chua duoc tai len.</p>';
+                } catch (err) {
+                    console.error("Lỗi tải chương:", err);
+                    chapterContainer.innerHTML = '<p class="text-red-500 text-center">Không thể tải danh sách chương.</p>';
                 }
 
             } catch (error) {

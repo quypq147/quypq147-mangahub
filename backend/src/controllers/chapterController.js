@@ -1,6 +1,28 @@
 const Chapter = require('../../models/chapter');
 const Manga = require('../../models/manga');
 
+exports.getChaptersByManga = async (req, res) => {
+    try {
+        const { mangaId } = req.params;
+
+        // Find chapters with matching mangaId
+        // .select() excludes the heavy 'pages' array for the list view to make it faster
+        // .sort() orders them by chapter number (ascending)
+        const chapters = await Chapter.find({ mangaId: mangaId })
+            .select('chapterNumber title releaseDate') 
+            .sort({ chapterNumber: 1 });
+
+        if (!chapters) {
+            return res.status(404).json({ error: 'No chapters found' });
+        }
+
+        res.status(200).json(chapters);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error fetching chapters' });
+    }
+};
 exports.getChapterContent = async (req, res) => {
     try {
         const { mangaId, chapterNum } = req.params;
