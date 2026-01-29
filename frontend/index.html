@@ -75,6 +75,7 @@
     </footer>
 
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/config.js"></script>
     <script>
         
         document.addEventListener('DOMContentLoaded', async () => {
@@ -87,7 +88,7 @@
 
             try {
                 // Gọi API lấy danh sách truyện
-                const response = await fetch('http://localhost:3000/api/manga');
+                const response = await fetch(`${API_BASE}/manga`);
                 if (!response.ok) throw new Error('Không thể kết nối đến Server');
 
                 const allManga = await response.json();

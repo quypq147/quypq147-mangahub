@@ -185,53 +185,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <img alt="User Avatar"
-                                class="w-10 h-10 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd7zjDyDZFDb000AZTP7vmsTWdN0c6bzchkWJ0HEjbyK_3b8NL2v_90oq5vYsRtBDwCfKgKhL4Vqbm_NZBTGQbqSCPSl0LvPkIAqzd0CctnxgT5MYqHSYe7d-dpV4ZBILK-uFEwpZrQtBVRWKrSLNjyZe8h8Ez55WjAazCX65udyKCMCkQqVLOSoR404dPFR-EB7SS6UYQFXmkhWKKItDnnZ3acvbas5J19SU7u7FWnIUbEP7RlbxbnruBInmriClwILzevyu0Ylg" />
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="font-bold text-sm">LuffyFan99</span>
-                                    <span
-                                        class="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary uppercase">Elite</span>
-                                    <span class="text-xs text-slate-500 ml-auto">2h ago</span>
-                                </div>
-                                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">The pacing of this
-                                    chapter was absolutely insane. The single page view really makes the double spreads
-                                    pop!</p>
-                                <div class="flex items-center gap-4 mt-3">
-                                    <button
-                                        class="flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-sm">thumb_up</span> 42
-                                    </button>
-                                    <button
-                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả
-                                        lời</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <img alt="User Avatar"
-                                class="w-10 h-10 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK04USBSHboHUjtq_sMp59TE3M2UkLbAn7_5pdhlE0dUesDxiH4hgu4wFT2GFxhdnviI6q-ub1DMfVFzdsWLGfSJqzdb3awNeC61TFdYVy966kCSI_63FWUVCJTH2vVBmZYS-V1HQtwIVa8B2XsvTH-gC6IhXkLCWH2tIlnjQCZ3UetT3yGdkS8Val-uWxZdm01L8fl9YqRai53n1DaEZLD0eTQWQeFq3zwwtZYDS44knVdfA1GA7alcUWBWe62ybseLnvEXFEXlc" />
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="font-bold text-sm">Nami_Navigator</span>
-                                    <span class="text-xs text-slate-500 ml-auto">5h ago</span>
-                                </div>
-                                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Egghead arc is
-                                    peak fiction. The lore drops are finally happening! Every page is a masterpiece.</p>
-                                <div class="flex items-center gap-4 mt-3">
-                                    <button
-                                        class="flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-sm">thumb_up</span> 15
-                                    </button>
-                                    <button
-                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả
-                                        lời</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <button
                         class="w-full mt-8 py-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 text-slate-500 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
@@ -261,6 +214,7 @@
     </aside>
 
 </body>
+<script src="../assets/js/config.js"></script>
 <script>
     // --- 1. STATE VARIABLES ---
     let pages = [];          // Array to store image URLs
@@ -280,7 +234,7 @@
 
         try {
             // Fetch data from our new Backend API
-            const response = await fetch(`${API_URL}/chapters/${mangaId}/${chapterNum}`);
+            const response = await fetch(`${API_BASE}/chapters/${mangaId}/${chapterNum}`);
             
             if (!response.ok) throw new Error("Failed to load chapter");
 
