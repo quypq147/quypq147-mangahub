@@ -3,10 +3,28 @@ const Manga = require('../../models/manga'); // Import your Model
 // 1. READ (Get all manga)
 exports.getMangaList = async function(req, res) {
     try {
-        const mangas = await Manga.find(); // Fetch all documents from MongoDB
-        res.status(200).json(mangas);      // Send them to Frontend
+        const { search, genre, status } = req.query;
+        let query = {};
+
+        // Search by title (case-insensitive)
+        if (search) {
+            query.title = { $regex: search, $options: 'i' };
+        }
+
+        // Filter by genre
+        if (genre) {
+            query.genres = genre;
+        }
+
+        // Filter by status (e.g., "Ongoing", "Completed")
+        if (status) {
+            query.status = status;
+        }
+
+        const mangas = await Manga.find(query);
+        res.status(200).json(mangas);
     } catch (err) {
-        res.status(500).json({error: 'Internal Server Error'});
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 

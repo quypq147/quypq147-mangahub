@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quypq147-mangahub - Manga</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <div class="bg-gray-800 p-4 rounded-lg mb-8 flex flex-wrap gap-4 items-center shadow-lg">
+            <div class="relative flex-grow">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" id="search-input"
+                       class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Search by title...">
+            </div>
+            <select id="genre-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Romance">Romance</option>
+                <option value="Adventure">Adventure</option>
+            </select>
+            <select id="status-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="">All Status</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
+                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg truncate">One Piece</h3>
+                    <p class="text-sm text-gray-400 mt-1">Chapter 1089</p>
+                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-flag"></i> EN/JP</span>
+                        <span>2h ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
+                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg truncate">Naruto</h3>
+                    <p class="text-sm text-gray-400 mt-1">Vol 72 (End)</p>
+                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-flag"></i> VI</span>
+                        <span>1d ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/nav.js"></script>
+    <script src="../assets/js/config.js"></script>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const container = document.querySelector('.grid');
+        const searchInput = document.getElementById('search-input');
+        const genreFilter = document.getElementById('genre-filter');
+        const statusFilter = document.getElementById('status-filter');
+
+        async function loadManga() {
+            try {
+                const params = new URLSearchParams();
+                if (searchInput.value) params.append('search', searchInput.value);
+                if (genreFilter.value) params.append('genre', genreFilter.value);
+                if (statusFilter.value) params.append('status', statusFilter.value);
+
+                const response = await fetch(`${API_BASE}/manga?${params.toString()}`);
+                const mangas = await response.json();
+
+                container.innerHTML = '';
+
+                if (mangas.length === 0) {
+                    container.innerHTML = '<p class="text-gray-400 col-span-full text-center">No results found.</p>';
+                    return;
+                }
+
+                mangas.forEach(manga => {
+                    container.innerHTML += `
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition group">
+                            <a href="detail.html?id=${manga._id}">
+                                <img src="${manga.coverImage || 'https://placehold.co/300x450?text=No+Cover'}"
+                                     class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg truncate group-hover:text-blue-400">${manga.title}</h3>
+                                    <p class="text-sm text-gray-400">${manga.author || 'Unknown'}</p>
+                                </div>
+                            </a>
+                        </div>`;
+                });
+            } catch (error) {
+                container.innerHTML = '<p class="text-red-500 col-span-full text-center">Error loading manga.</p>';
+            }
+        }
+
+        // Add event listeners for real-time filtering
+        searchInput.addEventListener('input', debounce(loadManga, 500));
+        genreFilter.addEventListener('change', loadManga);
+        statusFilter.addEventListener('change', loadManga);
+
+        // Initial load
+        loadManga();
+    });
+
+    // Helper: Avoid too many API calls while typing
+    function debounce(func, timeout = 300) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+    }
+</script>
+</html>

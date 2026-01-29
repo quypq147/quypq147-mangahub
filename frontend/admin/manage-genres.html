@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manage Genres</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b"
+                    }
+                }
+            }
+        };
+    </script>
 </head>
-<body>
-    
+<body class="bg-background-dark text-white p-10">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Quản lý Thể loại</h1>
+        <button onclick="addGenre()" class="bg-primary px-4 py-2 rounded-lg">+ Thêm mới</button>
+    </div>
+
+    <div class="bg-surface-dark rounded-xl border border-slate-800 overflow-hidden">
+        <table class="w-full text-left">
+            <thead class="bg-slate-800 text-slate-400 text-xs uppercase">
+                <tr>
+                    <th class="px-6 py-4">Tên Thể loại</th>
+                    <th class="px-6 py-4">Mô tả</th>
+                    <th class="px-6 py-4 text-right">Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="genres-list" class="divide-y divide-slate-800"></tbody>
+        </table>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script>
+        async function loadGenres() {
+            const res = await fetch(`${API_BASE}/genres`);
+            const genres = await res.json();
+
+            document.getElementById("genres-list").innerHTML = genres.map(g => `
+                <tr>
+                    <td class="px-6 py-4 font-medium">${g.name}</td>
+                    <td class="px-6 py-4 text-slate-400 text-sm">${g.description || "Không có mô tả"}</td>
+                    <td class="px-6 py-4 text-right">
+                        <button onclick="deleteGenre('${g._id}')" class="text-red-500">Xóa</button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        async function addGenre() {
+            const name = prompt("Tên thể loại?");
+            if (!name) return;
+
+            const description = prompt("Mô tả (tuỳ chọn):") || "";
+            await fetch(`${API_BASE}/genres`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, slug: name.toLowerCase().replace(/\s+/g, "-"), description })
+            });
+
+            loadGenres();
+        }
+
+        async function deleteGenre(id) {
+            if (!confirm("Xóa thể loại này?")) return;
+            await fetch(`${API_BASE}/genres/${id}`, { method: "DELETE" });
+            loadGenres();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadGenres);
+    </script>
 </body>
-</html>
+</html>     
