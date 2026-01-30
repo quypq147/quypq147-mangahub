@@ -66,8 +66,8 @@
             const allowedRoles = ["admin", "uploader"];
             const showUploadLink = allowedRoles.includes(user.role);
             const uploadLinkHTML = showUploadLink
-                ? `<a href="${base}user/upload.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
-                         <i class="fa-solid fa-cloud-upload mr-2 text-green-500"></i> Upload Truyện
+                ? `<a href="${base}upload/index.html" class="block px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition">
+                     <i class="fa-solid fa-cloud-upload mr-2 text-green-500"></i> Tải lên truyện
                    </a>`
                 : "";
 

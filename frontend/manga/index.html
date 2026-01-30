@@ -25,15 +25,15 @@
                        placeholder="Search by title...">
             </div>
             <select id="genre-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                <option value="">All Genres</option>
-                <option value="Action">Action</option>
-                <option value="Romance">Romance</option>
-                <option value="Adventure">Adventure</option>
+                <option value="">Tất cả thể loại</option>
+                <option value="Action">Hành động</option>
+                <option value="Romance">Lãng mạn</option>
+                <option value="Adventure">Phiêu lưu</option>
             </select>
             <select id="status-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                <option value="">All Status</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Completed">Completed</option>
+                <option value="">Tất cả trạng thái</option>
+                <option value="Ongoing">Đang tiến hành</option>
+                <option value="Completed">Đã hoàn thành</option>
             </select>
         </div>
 
@@ -88,7 +88,7 @@
                 container.innerHTML = '';
 
                 if (mangas.length === 0) {
-                    container.innerHTML = '<p class="text-gray-400 col-span-full text-center">No results found.</p>';
+                    container.innerHTML = '<p class="text-gray-400 col-span-full text-center">Không tìm thấy kết quả.</p>';
                     return;
                 }
 
@@ -106,7 +106,7 @@
                         </div>`;
                 });
             } catch (error) {
-                container.innerHTML = '<p class="text-red-500 col-span-full text-center">Error loading manga.</p>';
+                container.innerHTML = '<p class="text-red-500 col-span-full text-center">Lỗi khi tải truyện.</p>';
             }
         }
 

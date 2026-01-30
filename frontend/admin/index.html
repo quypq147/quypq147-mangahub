@@ -70,27 +70,27 @@
             <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
                 href="#">
                 <span class="material-icons-round group-hover:text-primary transition-colors">analytics</span>
-                <span class="font-medium hidden lg:block">Analytics</span>
+                <span class="font-medium hidden lg:block">Phân tích</span>
             </a>
             <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
                 href="#">
                 <span class="material-icons-round group-hover:text-primary transition-colors">library_books</span>
-                <span class="font-medium hidden lg:block">Manage Manga</span>
+                <span class="font-medium hidden lg:block">Quản lý Truyện</span>
             </a>
             <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
                 href="#">
                 <span class="material-icons-round group-hover:text-primary transition-colors">people</span>
-                <span class="font-medium hidden lg:block">Manage Users</span>
+                <span class="font-medium hidden lg:block">Quản lý Người dùng</span>
             </a>
             <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group"
                 href="#">
                 <span class="material-icons-round group-hover:text-primary transition-colors">forum</span>
-                <span class="font-medium hidden lg:block">Forum Moderation</span>
+                <span class="font-medium hidden lg:block">Kiểm duyệt Diễn đàn</span>
             </a>
             <a class="flex items-center gap-4 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group relative"
                 href="#">
                 <span class="material-icons-round group-hover:text-primary transition-colors">cloud_upload</span>
-                <span class="font-medium hidden lg:block">Upload Requests</span>
+                <span class="font-medium hidden lg:block">Yêu cầu Tải lên</span>
                 <span
                     class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden lg:block">12</span>
             </a>
@@ -101,7 +101,7 @@
                 onclick="document.documentElement.classList.toggle('dark')">
                 <span class="material-icons-round dark:hidden">dark_mode</span>
                 <span class="material-icons-round hidden dark:block">light_mode</span>
-                <span class="font-medium hidden lg:block">Appearance</span>
+                <span class="font-medium hidden lg:block">Giao diện</span>
             </button>
             <div class="flex items-center gap-3 mt-4 px-3">
                 <img alt="Admin profile" class="w-10 h-10 rounded-full object-cover"
@@ -116,8 +116,8 @@
     <main class="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-10">
     <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
         <div>
-            <h1 class="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
-            <p class="text-slate-500 dark:text-slate-400 mt-1">Chào mừng trở lại. Đây là tình hình hệ thống hôm nay.</p>
+            <h1 class="text-3xl font-bold tracking-tight">Bảng điều khiển quản trị</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-1">Chào mừng trở lại. Đây là những gì đang diễn ra hôm nay.</p>
         </div>
     </header>
 
@@ -127,23 +127,24 @@
             <p id="stat-total-users" class="text-3xl font-bold mt-1">...</p>
         </div>
         <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Chương mới (Hôm nay)</h3>
+            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Tải lên mới (Hôm nay)</h3>
             <p id="stat-new-uploads" class="text-3xl font-bold mt-1">...</p>
         </div>
     </div>
 
     <div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
         <div class="p-6 border-b border-slate-200 dark:border-slate-800">
-            <h2 class="text-xl font-bold">Chương chờ duyệt</h2>
+            <h2 class="text-xl font-bold">Chương đang chờ duyệt</h2>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-left">
                 <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase font-semibold">
                     <tr>
-                        <th class="px-6 py-4">Manga</th>
+                        <th class="px-6 py-4">Tiêu đề Truyện</th>
                         <th class="px-6 py-4">Chương</th>
-                        <th class="px-6 py-4">Người đăng</th>
-                        <th class="px-6 py-4 text-right">Hành động</th>
+                        <th class="px-6 py-4">Người tải lên</th>
+                        <th class="px-6 py-4">Trạng thái</th>
+                        <th class="px-6 py-4 text-right">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody id="pending-chapters-list" class="divide-y divide-slate-100 dark:divide-slate-800">
@@ -179,6 +180,11 @@
                     <td class="px-6 py-4 font-medium">${chap.mangaId?.title || "Unknown"}</td>
                     <td class="px-6 py-4">Ch. ${chap.chapterNumber}</td>
                     <td class="px-6 py-4 text-sm">${chap.uploader?.username || "Guest"}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 uppercase">
+                            Đang chờ duyệt
+                        </span>
+                    </td>
                     <td class="px-6 py-4 text-right">
                         <button onclick="approve('${chap._id}')" class="text-emerald-500 mr-2">Duyệt</button>
                         <button onclick="reject('${chap._id}')" class="text-red-500">Xóa</button>

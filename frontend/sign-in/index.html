@@ -56,48 +56,32 @@
                 <div class="p-8">
                     <div class="text-center mb-10">
                         <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Chào mừng trở lại</h1>
-                        <p class="text-slate-500 dark:text-slate-400">Đăng nhập để tham gia cộng đồng quốc tế</p>
+                        <p class="text-slate-500 dark:text-slate-400">Đăng nhập để tham gia cộng đồng</p>
                     </div>
                     <form class="space-y-6">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
-                                for="username">Tên người dùng hoặc Email</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
-                                    <span class="material-icons text-xl">person</span>
-                                </span>
-                                <input
-                                    class="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                                    id="username" name="username" placeholder="Nhập tên người dùng" type="text" />
-                            </div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tên đăng nhập hoặc Email</label>
+                            <input id="username" type="text" required
+                                class="block w-full pl-10 pr-3 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                                placeholder="manga_fan99 hoặc fan@email.com">
                         </div>
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
-                                    for="password">Mật khẩu</label>
-                                <a class="text-sm font-medium text-primary hover:underline transition-all" href="#">Quên
-                                    mật khẩu?</a>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Mật khẩu</label>
+                                <a class="text-sm text-primary hover:underline" href="#">Quên mật khẩu?</a>
                             </div>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
-                                    <span class="material-icons text-xl">lock</span>
-                                </span>
-                                <input
-                                    class="block w-full pl-10 pr-10 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                                    id="password" name="password" placeholder="••••••••" type="password" />
-                                <button
-                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                                    type="button">
-                                    <span class="material-icons text-xl">visibility</span>
-                                </button>
-                            </div>
+                            <input id="password" type="password" required
+                                class="block w-full pl-10 pr-3 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                                placeholder="••••••••">
                         </div>
                         <div class="flex items-center">
                             <input
                                 class="h-4 w-4 text-primary focus:ring-primary border-slate-300 dark:border-slate-600 rounded bg-slate-50 dark:bg-slate-800"
                                 id="remember-me" name="remember-me" type="checkbox" />
-                            <label class="ml-2 block text-sm text-slate-600 dark:text-slate-400" for="remember-me">
-                                Ghi nhớ tôi
+                            <label class="flex items-center text-sm text-slate-600 dark:text-slate-400">
+                                <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary mr-2"
+                                    type="checkbox">
+                                Ghi nhớ đăng nhập
                             </label>
                         </div>
                         <button
@@ -112,8 +96,9 @@
                             <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400">Hoặc
-                                tiếp tục với</span>
+                            <span class="px-2 bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400">
+                                Hoặc tiếp tục với
+                            </span>
                         </div>
                     </div>
                     <div class="mt-6 grid">
@@ -126,10 +111,9 @@
                 </div>
                 <div
                     class="py-6 px-8 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700/50 text-center">
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                    <p class="text-center text-sm text-slate-600 dark:text-slate-400">
                         Chưa có tài khoản?
-                        <a class="font-bold text-primary hover:text-rose-600 transition-all"
-                            href="../sign-up/index.html">Đăng ký ngay</a>
+                        <a class="font-medium text-primary hover:underline" href="../sign-up/index.html">Đăng ký ngay</a>
                     </p>
                 </div>
             </div>
