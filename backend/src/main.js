@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/manga", mangaRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api/chapters', require('./routes/chapterRoutes'));
+app.use("/api/forum", require("./routes/forumRoutes"));
 
 
 // Static files
