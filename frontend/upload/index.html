@@ -35,6 +35,67 @@
             },
         };
     </script>
+    <script>
+        // --- 0. DANH SÁCH THỂ LOẠI CÓ SẴN ---
+        const PREDEFINED_GENRES = [
+            "Hành Động", "Tình Cảm", "Học Đường", "Hài Hước",
+            "Phiêu Lưu", "Kinh Dị", "Đời Thường", "Phép Thuật",
+            "Thể Thao", "Viễn Tưởng", "Trinh Thám", "Mecha",
+            "Xuyên Không", "Cổ Trang", "Trùng Sinh", "Harem", "Yuri" , "Incest"
+        ];
+
+        // Hàm khởi tạo các nút thể loại
+        function renderGenreTags() {
+            const container = document.getElementById('genre-container');
+            const hiddenInputs = document.getElementById('hidden-genre-inputs');
+
+            container.innerHTML = '';
+            hiddenInputs.innerHTML = '';
+
+            PREDEFINED_GENRES.forEach(genre => {
+                const genreKey = encodeURIComponent(genre);
+                // 1. Tạo nút Tag hiển thị
+                const tag = document.createElement('button');
+                tag.type = 'button'; // Quan trọng: để không submit form khi bấm
+                tag.className = "px-3 py-1.5 text-sm rounded-full border transition-all duration-200 select-none bg-slate-100 text-slate-600 border-slate-300 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700";
+                tag.innerText = genre;
+
+                // 2. Xử lý sự kiện click
+                tag.onclick = () => {
+                    // Đổi trạng thái hiển thị (Toggle class)
+                    const isActive = tag.classList.contains('bg-primary');
+
+                    if (!isActive) {
+                        // Chọn: Đổi màu xanh + Chữ trắng
+                        tag.className = "px-3 py-1.5 text-sm rounded-full border transition-all duration-200 select-none bg-primary text-white border-primary shadow-sm shadow-blue-500/30";
+
+                        // Thêm input ẩn để gửi về server
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'genres'; // Backend sẽ nhận được mảng req.body.genres
+                        input.value = genre;
+                        input.id = `input-genre-${genreKey}`;
+                        hiddenInputs.appendChild(input);
+                    } else {
+                        // Bỏ chọn: Về màu xám
+                        tag.className = "px-3 py-1.5 text-sm rounded-full border transition-all duration-200 select-none bg-slate-100 text-slate-600 border-slate-300 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700";
+
+                        // Xóa input ẩn
+                        const input = document.getElementById(`input-genre-${genreKey}`);
+                        if (input) input.remove();
+                    }
+                };
+
+                container.appendChild(tag);
+            });
+        }
+
+        // Gọi hàm này khi trang vừa tải xong
+        document.addEventListener("DOMContentLoaded", () => {
+            renderGenreTags();
+            loadMangaOptions(); // Hàm cũ của bạn
+        });
+    </script>
     <style type="text/tailwindcss">
         body {
             font-family: 'Inter', sans-serif;
@@ -91,6 +152,14 @@
                         <label class="block text-sm font-medium mb-1">Mô tả</label>
                         <input type="text" name="description" required
                             class="w-full rounded-md border-slate-300 dark:bg-slate-900">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Thể loại (Chọn nhiều)</label>
+
+                        <div id="genre-container" class="flex flex-wrap gap-2">
+                        </div>
+
+                        <div id="hidden-genre-inputs"></div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Ảnh bìa (Cover Image)</label>

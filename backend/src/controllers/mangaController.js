@@ -50,9 +50,10 @@ exports.createManga = async function(req, res) {
         const newManga = new Manga({
             title: req.body.title,
             author: req.body.author,
-            chapters: req.body.chapters,
-            genres: req.body.genres,
-            rating: req.body.rating,
+            description: req.body.description,
+            chapters: req.body.chapters || 0,
+            genres: req.body.genres || [],
+            rating: req.body.rating || 0,
             coverImage: coverImageUrl
         });
         const savedManga = await newManga.save(); // Save to DB

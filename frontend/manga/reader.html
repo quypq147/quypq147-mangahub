@@ -182,7 +182,9 @@
                                     <button
                                         class="px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90 transition-opacity">Đăng
                                         bình luận</button>
-                                    <button class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả lời</button>
+                                    <button
+                                        class="text-xs font-bold text-slate-500 hover:text-primary transition-colors">Trả
+                                        lời</button>
                                 </div>
                             </div>
                         </div>
@@ -220,10 +222,10 @@
     // --- 1. STATE VARIABLES ---
     let pages = [];          // Array to store image URLs
     let currentPageIndex = 0; // Tracks which page user is reading (0, 1, 2...)
-    
+
     // Get URL Params (e.g., reader.html?id=123&chapter=5)
     const urlParams = new URLSearchParams(window.location.search);
-    const mangaId = urlParams.get('id');
+    const mangaId = urlParams.get('mangaId'); // <--- Changed 'id' to 'mangaId'
     const chapterNum = urlParams.get('chapter');
 
     // --- 2. INITIALIZATION ---
@@ -236,14 +238,14 @@
         try {
             // Fetch data from our new Backend API
             const response = await fetch(`${API_BASE}/chapters/${mangaId}/${chapterNum}`);
-            
+
             if (!response.ok) throw new Error("Failed to load chapter");
 
             const data = await response.json();
 
             // Store the pages
-            pages = data.pages; 
-            
+            pages = data.pages;
+
             // Update Text UI
             document.getElementById('manga-title').innerText = data.mangaTitle;
             document.getElementById('chapter-title').innerText = `Chapter ${chapterNum}: ${data.chapterTitle || ''}`;
@@ -275,7 +277,7 @@
         // Update Progress Bar Width
         const percentage = ((index + 1) / pages.length) * 100;
         document.getElementById('progress-bar').style.width = `${percentage}%`;
-        
+
         // Scroll to top slightly for better UX on mobile
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -305,4 +307,5 @@
     // Run on Load
     initReader();
 </script>
+
 </html>

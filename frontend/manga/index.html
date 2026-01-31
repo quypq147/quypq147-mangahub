@@ -15,54 +15,59 @@
     <div id="site-nav"></div>
     <main class="max-w-7xl mx-auto px-4 py-8">
 
-        <div class="bg-gray-800 p-4 rounded-lg mb-8 flex flex-wrap gap-4 items-center shadow-lg">
-            <div class="relative flex-grow">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="text" id="search-input"
-                       class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 outline-none"
-                       placeholder="Search by title...">
-            </div>
-            <select id="genre-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                <option value="">Tất cả thể loại</option>
-                <option value="Action">Hành động</option>
-                <option value="Romance">Lãng mạn</option>
-                <option value="Adventure">Phiêu lưu</option>
-            </select>
-            <select id="status-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                <option value="">Tất cả trạng thái</option>
-                <option value="Ongoing">Đang tiến hành</option>
-                <option value="Completed">Đã hoàn thành</option>
-            </select>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
-                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg truncate">One Piece</h3>
-                    <p class="text-sm text-gray-400 mt-1">Chapter 1089</p>
-                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
-                        <span><i class="fa-solid fa-flag"></i> EN/JP</span>
-                        <span>2h ago</span>
-                    </div>
+        <div class="bg-gray-800 p-4 rounded-lg mb-8 shadow-lg">
+            <div class="flex gap-2">
+                <div class="relative flex-grow">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="search-input"
+                           class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 outline-none"
+                           placeholder="Tìm kiếm theo tên truyện...">
                 </div>
+
+                <button id="toggle-filter" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition flex items-center gap-2">
+                    <i class="fa-solid fa-filter"></i>
+                    <span class="hidden sm:inline">Bộ lọc</span>
+                </button>
             </div>
 
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition">
-                <img src="https://placehold.co/300x450" alt="Manga Cover" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold text-lg truncate">Naruto</h3>
-                    <p class="text-sm text-gray-400 mt-1">Vol 72 (End)</p>
-                    <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
-                        <span><i class="fa-solid fa-flag"></i> VI</span>
-                        <span>1d ago</span>
-                    </div>
+            <div id="filter-options" class="hidden mt-4 pt-4 border-t border-gray-700 flex flex-wrap gap-4">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs text-gray-400 uppercase font-bold">Thể loại</label>
+                    <select id="genre-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="">Tất cả thể loại</option>
+                        <option value="Action">Hành động</option>
+                        <option value="Romance">Lãng mạn</option>
+                        <option value="Adventure">Phiêu lưu</option>
+                        <option value="Fantasy">Huyền huyễn</option>
+                        <option value="Comedy">Hài hước</option>
+                        <option value="Drama">Chính kịch</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs text-gray-400 uppercase font-bold">Trạng thái</label>
+                    <select id="status-filter" class="bg-gray-900 border border-gray-700 text-gray-300 py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="">Tất cả</option>
+                        <option value="Ongoing">Đang tiến hành</option>
+                        <option value="Completed">Đã hoàn thành</option>
+                    </select>
                 </div>
             </div>
         </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="manga-container">
+            <!-- Manga cards will be rendered here -->
+        </div>
+
     </main>
+
+    <footer class="bg-gray-800 border-t border-gray-700 py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Quypq147 MangaHub. Bảo lưu mọi quyền.</p>
+        </div>
+    </footer>
 
     <script src="../assets/js/nav.js"></script>
     <script src="../assets/js/config.js"></script>
@@ -70,15 +75,24 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
-        const container = document.querySelector('.grid');
+        const container = document.getElementById('manga-container');
         const searchInput = document.getElementById('search-input');
         const genreFilter = document.getElementById('genre-filter');
         const statusFilter = document.getElementById('status-filter');
+        const filterOptions = document.getElementById('filter-options');
+        const toggleBtn = document.getElementById('toggle-filter');
+
+        // Xử lý ẩn/hiện bộ lọc
+        toggleBtn.addEventListener('click', () => {
+            filterOptions.classList.toggle('hidden');
+            toggleBtn.classList.toggle('bg-blue-600');
+            toggleBtn.classList.toggle('bg-gray-700');
+        });
 
         async function loadManga() {
             try {
                 const params = new URLSearchParams();
-                if (searchInput.value) params.append('search', searchInput.value);
+                if (searchInput.value.trim()) params.append('search', searchInput.value.trim());
                 if (genreFilter.value) params.append('genre', genreFilter.value);
                 if (statusFilter.value) params.append('status', statusFilter.value);
 
@@ -88,7 +102,7 @@
                 container.innerHTML = '';
 
                 if (mangas.length === 0) {
-                    container.innerHTML = '<p class="text-gray-400 col-span-full text-center">Không tìm thấy kết quả.</p>';
+                    container.innerHTML = '<p class="text-gray-400 col-span-full text-center py-10">Không tìm thấy kết quả.</p>';
                     return;
                 }
 
@@ -97,35 +111,42 @@
                         <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-blue-500/50 transition group">
                             <a href="detail.html?id=${manga._id}">
                                 <img src="${manga.coverImage || 'https://placehold.co/300x450?text=No+Cover'}"
-                                     class="w-full h-64 object-cover">
+                                     class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
                                 <div class="p-4">
                                     <h3 class="font-bold text-lg truncate group-hover:text-blue-400">${manga.title}</h3>
-                                    <p class="text-sm text-gray-400">${manga.author || 'Unknown'}</p>
+                                    <p class="text-sm text-gray-400 mt-1">${manga.author || 'Đang cập nhật'}</p>
+                                    <div class="mt-2 flex justify-between items-center text-xs">
+                                        <span class="text-gray-500">${manga.chapters || 0} chương</span>
+                                        <span class="text-yellow-500">
+                                            <i class="fa-solid fa-star"></i> ${manga.rating || 'N/A'}
+                                        </span>
+                                    </div>
                                 </div>
                             </a>
                         </div>`;
                 });
             } catch (error) {
+                console.error('Lỗi tải truyện:', error);
                 container.innerHTML = '<p class="text-red-500 col-span-full text-center">Lỗi khi tải truyện.</p>';
             }
         }
 
-        // Add event listeners for real-time filtering
+        // Helper: Debounce để tránh gọi API quá nhiều khi đang gõ
+        function debounce(func, timeout = 500) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            };
+        }
+
+        // Lắng nghe sự kiện
         searchInput.addEventListener('input', debounce(loadManga, 500));
         genreFilter.addEventListener('change', loadManga);
         statusFilter.addEventListener('change', loadManga);
 
-        // Initial load
+        // Tải dữ liệu lần đầu
         loadManga();
     });
-
-    // Helper: Avoid too many API calls while typing
-    function debounce(func, timeout = 300) {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => { func.apply(this, args); }, timeout);
-        };
-    }
 </script>
 </html>
