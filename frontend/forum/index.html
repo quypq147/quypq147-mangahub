@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Community Forum</title>
+    <title>Dien Dan Cong Dong</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -28,75 +28,131 @@
         </div>
 
         <div class="col-span-3">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">Thảo luận chung</h2>
-                <button class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white">
-                    + Tạo chủ đề mới
-                </button>
-            </div>
-            <div id="loading" class="text-center py-20">
-                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500"></i>
-                <p class="mt-4 text-gray-400">Đang tải dữ liệu...</p>
-            </div>
-            <div id="no-data-message" class="hidden text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
+            <div id="no-data-message" class=" text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
                 <i class="fa-solid fa-folder-open text-6xl text-gray-600 mb-4"></i>
                 <h2 class="text-2xl font-bold text-white mb-3">Hiện tại chưa có bài viết</h2>
                 <p class="text-gray-400">Vui lòng quay lại sau hoặc tạo chủ đề mới.</p>
             </div>
-            <div
-                class="bg-gray-800 p-4 rounded-lg mb-4 flex justify-between items-center hover:bg-gray-750 transition border-l-4 border-transparent hover:border-blue-500">
-                <div>
-                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Chương mới nhất của One
-                        Piece có bị trễ không?</h4>
-                    <p class="text-sm text-gray-400 mt-1">Đăng bởi <span class="text-white">LuffyFan99</span> • 2
-                        giờ trước</p>
-                </div>
-                <div class="text-right hidden sm:block">
-                    <div class="text-xl font-bold">24</div>
-                    <div class="text-xs text-gray-500">Trả lời</div>
-                </div>
-            </div>
-
-            <div
-                class="bg-gray-800 p-4 rounded-lg mb-4 flex justify-between items-center hover:bg-gray-750 transition border-l-4 border-transparent hover:border-blue-500">
-                <div>
-                    <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">Truyện tranh tốt nhất cho
-                        người mới bắt đầu?
-                    </h4>
-                    <p class="text-sm text-gray-400 mt-1">Đăng bởi <span class="text-white">NewbieReader</span> • 5
-                        giờ trước</p>
-                </div>
-                <div class="text-right hidden sm:block">
-                    <div class="text-xl font-bold">108</div>
-                    <div class="text-xs text-gray-500">Trả lời</div>
-                </div>
-            </div>
-
         </div>
+        <button onclick="alert('Feature coming soon!')" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white inline-block">
+                + Chủ đề mới
+            </button>
     </div>
     <script src="../assets/js/nav.js"></script>
+    <script src="../assets/js/config.js"></script>
 </body>
 <script>
-    //Logic tai trang forum
-    document.addEventListener('DOMContentLoaded', function () {
-        const loading = document.getElementById('loading');
-        const noDataMsg = document.getElementById('no-data-message');
-        try{
+    // Helper to format time (e.g., "2 hours ago")
+    function timeAgo(date) {
+        const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+        let interval = seconds / 31536000;
+        if (interval > 1) return Math.floor(interval) + " năm trước";
+        interval = seconds / 2592000;
+        if (interval > 1) return Math.floor(interval) + " tháng trước";
+        interval = seconds / 86400;
+        if (interval > 1) return Math.floor(interval) + " ngày trước";
+        interval = seconds / 3600;
+        if (interval > 1) return Math.floor(interval) + " giờ trước";
+        interval = seconds / 60;
+        if (interval > 1) return Math.floor(interval) + " phút trước";
+        return "Vừa xong";
+    }
+
+    async function initForum() {
+        const categoryListEl = document.querySelector('.col-span-1 ul');
+        
+        // 1. Fetch Categories (Sidebar)
+        try {
+            const catRes = await fetch(`${API_BASE}/forum/categories`);
+            const categories = await catRes.json();
             
-            setTimeout(() => {
-                loading.classList.add('hidden');
-                // Giả lập có dữ liệu
-                const hasData = true; // Thay đổi thành false để kiểm tra trạng thái không có dữ liệu
-                if (!hasData) {
-                    noDataMsg.classList.remove('hidden');
-                }
-            }, 1500);
-        } catch (error) {
-            loading.classList.add('hidden');
-            noDataMsg.classList.remove('hidden');
-            console.error('Lỗi khi tải dữ liệu:', error);
+            if (categories.length > 0) {
+                // Render Sidebar Categories
+                categoryListEl.innerHTML = categories.map(cat => `
+                    <li onclick="loadThreads('${cat.slug}')" 
+                        class="p-2 rounded cursor-pointer text-gray-400 hover:bg-gray-700 transition-colors"
+                        id="cat-${cat.slug}">
+                        ${cat.name}
+                    </li>
+                `).join('');
+
+                // Automatically load the first category
+                loadThreads(categories[0].slug);
+            }
+        } catch (err) {
+            console.error("Error loading categories:", err);
         }
-    });
+    }
+
+    // 2. Load Threads for a specific Category
+    async function loadThreads(slug) {
+        const loadingEl = document.getElementById('loading');
+        const noDataEl = document.getElementById('no-data-message');
+        const titleEl = document.querySelector('.col-span-3 h2'); // Category Title
+        
+        // Update Sidebar Active State (Visuals)
+        document.querySelectorAll('.col-span-1 ul li').forEach(li => {
+            li.classList.remove('bg-blue-600', 'text-white');
+            li.classList.add('text-gray-400');
+        });
+        const activeLi = document.getElementById(`cat-${slug}`);
+        if(activeLi) {
+            activeLi.classList.remove('text-gray-400');
+            activeLi.classList.add('bg-blue-600', 'text-white');
+        }
+
+        // Reset View
+        loadingEl.classList.remove('hidden');
+        noDataEl.classList.add('hidden');
+        // Remove existing threads (keep header/loading divs)
+        document.querySelectorAll('.thread-item').forEach(el => el.remove());
+
+        try {
+            const res = await fetch(`${API_BASE}/forum/category/${slug}`);
+            const data = await res.json();
+            
+            loadingEl.classList.add('hidden');
+            
+            // Update Title
+            if (data.forum) titleEl.innerText = data.forum.name;
+
+            if (!data.threads || data.threads.length === 0) {
+                noDataEl.classList.remove('hidden');
+            } else {
+                // Render Threads
+                data.threads.forEach(thread => {
+                    const html = `
+                        <div class="thread-item bg-gray-800 p-4 rounded-lg mb-4 flex justify-between items-center hover:bg-gray-750 transition border-l-4 border-transparent hover:border-blue-500">
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-400 hover:underline cursor-pointer">
+                                    <a href="detail.html?slug=${thread.slug}">${thread.title}</a>
+                                </h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    ${thread.isPinned ? '<span class="text-xs bg-yellow-600 text-white px-1 rounded">Ghim</span>' : ''}
+                                    <span class="text-xs bg-gray-700 px-1 rounded text-gray-300 uppercase">${thread.threadType}</span>
+                                    <p class="text-sm text-gray-400">
+                                        Đăng bởi <span class="text-white">${thread.author?.username || 'Ẩn danh'}</span> 
+                                        • ${timeAgo(thread.createdAt)}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right hidden sm:block">
+                                <div class="text-xl font-bold">${thread.replyCount || 0}</div>
+                                <div class="text-xs text-gray-500">Trả lời</div>
+                            </div>
+                        </div>
+                    `;
+                    // Insert after the "No Data" message
+                    noDataEl.insertAdjacentHTML('afterend', html);
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            loadingEl.innerHTML = '<p class="text-red-500">Lỗi tải dữ liệu</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', initForum);
 </script>
 
 </html>

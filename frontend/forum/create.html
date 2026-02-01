@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo bài viết mới - MangaHub Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../assets/js/config.js"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <div class="mb-6 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-white">Tạo chủ đề thảo luận mới</h1>
+            <a href="index.html" class="text-sm text-gray-400 hover:text-white transition">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+            </a>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 md:p-8 shadow-xl">
+            <form id="create-thread-form" class="space-y-6">
+                
+                <div>
+                    <label class="block text-sm font-bold text-gray-300 mb-2">
+                        Tiêu đề bài viết <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="title" required
+                        class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-600"
+                        placeholder="VD: Thảo luận về Chapter 100...">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">
+                            Danh mục <span class="text-red-500">*</span>
+                        </label>
+                        <select id="forumId" required
+                            class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition appearance-none">
+                            <option value="">-- Chọn danh mục --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Loại chủ đề</label>
+                        <select id="threadType"
+                            class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <option value="discussion">💬 Thảo luận</option>
+                            <option value="question">❓ Câu hỏi</option>
+                            <option value="theory">💡 Giả thuyết</option>
+                            <option value="spoiler">⚠️ Spoiler</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-300 mb-2">
+                        Nội dung <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="content" rows="10" required
+                        class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-600 font-mono text-sm"
+                        placeholder="Viết nội dung của bạn ở đây..."></textarea>
+                    <p class="text-xs text-gray-500 mt-2 text-right">Hỗ trợ xuống dòng và các ký tự cơ bản.</p>
+                </div>
+
+                <div class="pt-4 border-t border-gray-700 flex justify-end gap-3">
+                    <a href="index.html"
+                        class="px-6 py-2 rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition font-medium">
+                        Hủy bỏ
+                    </a>
+                    <button type="submit"
+                        class="px-8 py-2 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Đăng bài
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <script src="../assets/js/nav.js"></script>
+    <script>
+        // 1. Kiểm tra đăng nhập ngay lập tức
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert("Vui lòng đăng nhập để tạo bài viết!");
+            window.location.href = '../sign-in/index.html';
+        }
+
+        // 2. Load Danh mục Forum
+        async function loadCategories() {
+            try {
+                const res = await fetch(`${API_BASE}/forum/categories`);
+                const categories = await res.json();
+
+                const select = document.getElementById('forumId');
+                categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat._id;
+                    option.text = cat.name;
+                    select.appendChild(option);
+                });
+
+                // Optional: preselect by ?catId=<forumId>
+                const urlParams = new URLSearchParams(window.location.search);
+                const preSelect = urlParams.get('catId');
+                if (preSelect) select.value = preSelect;
+
+            } catch (err) {
+                console.error("Lỗi tải danh mục:", err);
+            }
+        }
+
+        // 3. Xử lý Submit Form
+        document.getElementById('create-thread-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const forumId = document.getElementById('forumId').value;
+            const threadType = document.getElementById('threadType').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xử lý...';
+
+            try {
+                const res = await fetch(`${API_BASE}/forum/thread`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ title, content, forumId, threadType })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    window.location.href = `detail.html?slug=${data.slug}`;
+                } else {
+                    alert(data.error || "Có lỗi xảy ra khi tạo bài viết.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Lỗi kết nối Server.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', loadCategories);
+    </script>
+</body>
+</html>

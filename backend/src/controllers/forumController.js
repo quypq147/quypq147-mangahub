@@ -60,3 +60,53 @@ exports.createThread = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+// 4. Get Single Thread Details + Posts
+exports.getThreadBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    // 1. Find the thread and increment view count
+    const thread = await ForumThread.findOneAndUpdate(
+      { slug },
+      { $inc: { views: 1 } },
+      { new: true }
+    ).populate('author', 'username avatar role'); // Get thread starter info
+
+    if (!thread) {
+      return res.status(404).json({ error: 'Thread not found' });
+    }
+
+    // 2. Get all posts (replies) for this thread
+    const posts = await ForumPost.find({ thread: thread._id })
+      .populate('author', 'username avatar role')
+      .sort({ createdAt: 1 }); // Oldest first
+
+    res.status(200).json({ thread, posts });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// 5. Post a Reply
+exports.createReply = async (req, res) => {
+  try {
+    const { threadId, content } = req.body;
+
+    if (!threadId || !content || !String(content).trim()) {
+      return res.status(400).json({ error: 'threadId and content are required' });
+    }
+
+    const newPost = new ForumPost({
+      content,
+      thread: threadId,
+      author: req.user.id // From auth middleware
+    });
+
+    await newPost.save();
+
+    res.status(201).json(newPost);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

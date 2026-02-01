@@ -1,11 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thảo luận - MangaHub Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../assets/js/config.js"></script>
 </head>
-<body>
-    
+
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <script>window.NAV_BASE_PATH = '../';</script>
+    <div id="site-nav"></div>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <div class="mb-6 text-sm text-gray-400">
+            <a href="index.html" class="hover:text-blue-400">Diễn đàn</a> 
+            <span class="mx-2">/</span>
+            <span id="bc-title" class="text-white">Đang tải...</span>
+        </div>
+
+        <div id="thread-container" class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden mb-8 shadow-lg">
+            <div class="p-6 border-b border-gray-700 bg-gray-800/50">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 text-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-xl font-bold mb-2 mx-auto border-2 border-gray-700" id="thread-avatar">
+                            ?
+                        </div>
+                        <p class="text-xs font-bold text-blue-400 truncate w-20" id="thread-author">...</p>
+                        <span class="text-[10px] uppercase bg-gray-700 px-1.5 py-0.5 rounded text-gray-300 mt-1 inline-block" id="thread-role">Member</span>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <h1 class="text-2xl md:text-3xl font-bold text-white mb-2" id="thread-title">...</h1>
+                        <p class="text-xs text-gray-500 mb-6 flex items-center gap-2">
+                            <i class="fa-regular fa-clock"></i> <span id="thread-date">...</span>
+                        </p>
+                        <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed" id="thread-content">
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-3 bg-gray-900/50 flex gap-6 text-xs text-gray-500 font-medium">
+                <span><i class="fa-solid fa-eye mr-1"></i> <span id="thread-views">0</span> Lượt xem</span>
+                <span><i class="fa-solid fa-comment mr-1"></i> <span id="thread-replies">0</span> Trả lời</span>
+            </div>
+        </div>
+
+        <div id="replies-container" class="space-y-4 mb-8">
+            </div>
+
+        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 shadow-lg">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square text-blue-500"></i> Viết bình luận
+            </h3>
+            <form id="reply-form">
+                <textarea id="reply-content" rows="4" 
+                    class="w-full bg-gray-900 border border-gray-700 rounded-lg p-4 text-white focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-600"
+                    placeholder="Chia sẻ suy nghĩ của bạn về chủ đề này..." required></textarea>
+                <div class="mt-4 flex justify-between items-center">
+                    <p class="text-xs text-gray-500">* Hãy thảo luận văn minh, lịch sự.</p>
+                    <button type="submit" 
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi đi
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 border-t border-gray-700 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">© 2024 MangaHub Community.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/nav.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+        let threadId = null;
+
+        function getAvatar(username) {
+            return username ? username.charAt(0).toUpperCase() : '?';
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString('vi-VN', { 
+                year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+            });
+        }
+
+        async function loadThread() {
+            if (!slug) {
+                alert("Không tìm thấy bài viết!");
+                return window.location.href = 'index.html';
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/forum/thread/${slug}`);
+                if (!res.ok) throw new Error("Thread not found");
+                
+                const data = await res.json();
+                const thread = data.thread;
+                const posts = data.posts;
+
+                threadId = thread._id;
+
+                document.title = `${thread.title} | MangaHub Forum`;
+                document.getElementById('bc-title').innerText = thread.title;
+                document.getElementById('thread-title').innerText = thread.title;
+                document.getElementById('thread-content').innerHTML = (thread.content || '').replace(/\n/g, '<br>');
+
+                document.getElementById('thread-author').innerText = thread.author?.username || 'Ẩn danh';
+                document.getElementById('thread-role').innerText = thread.author?.role || 'User';
+                document.getElementById('thread-avatar').innerText = getAvatar(thread.author?.username);
+
+                document.getElementById('thread-date').innerText = formatDate(thread.createdAt);
+                document.getElementById('thread-views').innerText = thread.views;
+                document.getElementById('thread-replies').innerText = posts.length;
+
+                const repliesContainer = document.getElementById('replies-container');
+                repliesContainer.innerHTML = '';
+
+                if (posts.length === 0) {
+                    repliesContainer.innerHTML = `<p class="text-center text-gray-500 italic py-4">Chưa có bình luận nào. Hãy là người đầu tiên!</p>`;
+                } else {
+                    posts.forEach(post => {
+                        const html = `
+                            <div class="bg-gray-800 rounded-lg border border-gray-700 p-4 md:p-6 flex gap-4">
+                                <div class="flex-shrink-0 text-center w-12 sm:w-16">
+                                    <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-lg font-bold mx-auto mb-1 border border-gray-600">
+                                        ${getAvatar(post.author?.username)}
+                                    </div>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold text-blue-400 text-sm">${post.author?.username || 'Unknown'}</span>
+                                            <span class="text-[10px] bg-gray-700 text-gray-400 px-1 rounded">${post.author?.role || 'User'}</span>
+                                        </div>
+                                        <span class="text-xs text-gray-500">${formatDate(post.createdAt)}</span>
+                                    </div>
+                                    <div class="text-gray-300 text-sm leading-relaxed border-l-2 border-gray-700 pl-3">
+                                        ${(post.content || '').replace(/\n/g, '<br>')}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        repliesContainer.innerHTML += html;
+                    });
+                }
+
+            } catch (err) {
+                console.error(err);
+                document.querySelector('main').innerHTML = `
+                    <div class="text-center py-20">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl text-red-500 mb-4"></i>
+                        <h2 class="text-xl font-bold">Không thể tải bài viết</h2>
+                        <p class="text-gray-500 mt-2">Bài viết có thể đã bị xóa hoặc server đang bận.</p>
+                        <a href="index.html" class="text-blue-400 hover:underline mt-4 inline-block">Quay lại diễn đàn</a>
+                    </div>`;
+            }
+        }
+
+        document.getElementById('reply-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const content = document.getElementById('reply-content').value;
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                if (confirm("Bạn cần đăng nhập để bình luận. Đi đến trang đăng nhập?")) {
+                    window.location.href = '../sign-in/index.html';
+                }
+                return;
+            }
+
+            try {
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...';
+
+                const res = await fetch(`${API_BASE}/forum/reply`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ threadId, content })
+                });
+
+                if (res.ok) {
+                    document.getElementById('reply-content').value = '';
+                    await loadThread();
+                } else {
+                    let data = {};
+                    try { data = await res.json(); } catch (_) {}
+                    alert(data.error || "Gửi thất bại.");
+                }
+
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+
+            } catch (err) {
+                console.error(err);
+                alert("Lỗi kết nối server");
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', loadThread);
+    </script>
 </body>
 </html>
